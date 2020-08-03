@@ -2,12 +2,23 @@ package com.foxminded.domain;
 
 public class Student extends Person{
 
-    public Student() {
-        
+    private Group group;
+    
+    public Student(int id, String firstName, String lastName, int age, Group group) {
+        super(id, firstName, lastName, age);
+        this.group = group;
     }
     
-    public Student(String firstName, String lastName) {
-        super(firstName, lastName);
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    public Student() {
+        
     }
 
     @Override
@@ -26,4 +37,9 @@ public class Student extends Person{
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Student [] " + super.toString();
+    }
+    
 }

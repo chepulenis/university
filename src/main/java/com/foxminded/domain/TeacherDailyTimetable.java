@@ -3,13 +3,13 @@ package com.foxminded.domain;
 import java.util.Date;
 import java.util.List;
 
-public class StudentDailyTimeTable extends DailyTimeTable{
+public class TeacherDailyTimetable extends DailyTimetable{
     
-    public StudentDailyTimeTable() {
+    public TeacherDailyTimetable() {
     }
-
-    public StudentDailyTimeTable(List<Lesson> lessons, Date date) {
-        super(lessons, date);
+    
+    public TeacherDailyTimetable(int id, List<Lesson> lessons, Date date) {
+        super(id, lessons, date);
     }
 
     @Override
@@ -33,4 +33,4 @@ public class StudentDailyTimeTable extends DailyTimeTable{
         return super.toString();
     }
     
-}    
+}

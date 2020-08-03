@@ -3,17 +3,27 @@ package com.foxminded.domain;
 import java.util.Date;
 import java.util.List;
 
-public class DailyTimeTable {
+public class DailyTimetable {
     
+    private int id;
     private List<Lesson> lessons;
     private Date date;
     
-    public DailyTimeTable() {
+    public DailyTimetable() {
     }
     
-    public DailyTimeTable(List<Lesson> lessons, Date date) {
+    public DailyTimetable(int id, List<Lesson> lessons, Date date) {
+        this.id = id;
         this.lessons = lessons;
         this.date = date;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     public List<Lesson> getLessons() {
@@ -37,6 +47,7 @@ public class DailyTimeTable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((date == null) ? 0 : date.hashCode());
+        result = prime * result + id;
         result = prime * result + ((lessons == null) ? 0 : lessons.hashCode());
         return result;
     }
@@ -49,11 +60,13 @@ public class DailyTimeTable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        DailyTimeTable other = (DailyTimeTable) obj;
+        DailyTimetable other = (DailyTimetable) obj;
         if (date == null) {
             if (other.date != null)
                 return false;
         } else if (!date.equals(other.date))
+            return false;
+        if (id != other.id)
             return false;
         if (lessons == null) {
             if (other.lessons != null)
@@ -65,7 +78,7 @@ public class DailyTimeTable {
 
     @Override
     public String toString() {
-        return "DailyTimeTable [lessons=" + lessons + ", date=" + date + "]";
+        return "DailyTimeTable [id=" + id + ", lessons=" + lessons + ", date=" + date + "]";
     }
-    
+
 }

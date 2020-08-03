@@ -2,21 +2,31 @@ package com.foxminded.domain;
 
 public class Classroom {
 
+    private int id;
     private String name;
     private int size;
     
     public Classroom() {
     }
 
-    public Classroom(String name, int size) {
+    public Classroom(int id, String name, int size) {
+        this.id = id;
         this.name = name;
         this.size = size;
     }
-
+    
     public boolean isFull(int studentsAmount) {
         return size == studentsAmount;
     }
     
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -37,6 +47,7 @@ public class Classroom {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + id;
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + size;
         return result;
@@ -51,6 +62,8 @@ public class Classroom {
         if (getClass() != obj.getClass())
             return false;
         Classroom other = (Classroom) obj;
+        if (id != other.id)
+            return false;
         if (name == null) {
             if (other.name != null)
                 return false;
@@ -63,7 +76,7 @@ public class Classroom {
 
     @Override
     public String toString() {
-        return "Classroom [name=" + name + ", size=" + size + "]";
-    } 
-    
+        return "Classroom [id=" + id + ", name=" + name + ", size=" + size + "]";
+    }
+
 }

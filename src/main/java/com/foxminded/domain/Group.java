@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Group {
     
+    private int id;
     private String name; 
     private List<Student> students;
     
@@ -11,9 +12,17 @@ public class Group {
         
     }
     
-    public Group(String name, List<Student> students) {
+    public Group(int id, String name) {
+        this.id = id;
         this.name = name;
-        this.students = students;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -36,6 +45,7 @@ public class Group {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + id;
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((students == null) ? 0 : students.hashCode());
         return result;
@@ -50,6 +60,8 @@ public class Group {
         if (getClass() != obj.getClass())
             return false;
         Group other = (Group) obj;
+        if (id != other.id)
+            return false;
         if (name == null) {
             if (other.name != null)
                 return false;
@@ -65,7 +77,7 @@ public class Group {
 
     @Override
     public String toString() {
-        return "Group [name=" + name + ", students=" + students + "]";
+        return "Group [id=" + id + ", name=" + name + "]";
     }
-    
+
 }
