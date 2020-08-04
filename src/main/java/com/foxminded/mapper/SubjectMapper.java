@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.foxminded.domain.Subject;
 
-
 public class SubjectMapper implements RowMapper<Subject> {
 
     public Subject mapRow(ResultSet resultSet, int i) throws SQLException {
