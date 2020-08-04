@@ -3,8 +3,6 @@ package com.foxminded.dao;
 import java.sql.Date;
 import java.util.List;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -15,7 +13,7 @@ import com.foxminded.mapper.LessonMapper;
 import com.foxminded.mapper.TeacherDailyTimetableMapper;
 
 @Component
-public class TeacherDailyTimetableDAO {
+public class TeacherDailyTimetableDao {
 
     private final String SQL_FIND_TEACHER_DAILY_TIMETABLE = "select * from teacher_daily_timetable where id = ?";
     private final String SQL_FIND_DAILY_LESSONS_FOR_TEACHER = "select lessons.*, teacher_daily_timetable.date as date from lessons, teacher_daily_timetable where "
@@ -24,8 +22,8 @@ public class TeacherDailyTimetableDAO {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public TeacherDailyTimetableDAO(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
+    public TeacherDailyTimetableDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
     
     public TeacherDailyTimetable findTeacherTimetableById(int id) {

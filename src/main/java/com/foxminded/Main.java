@@ -20,15 +20,15 @@ import com.foxminded.domain.Teacher;
 import com.foxminded.domain.TeacherDailyTimetable;
 import com.foxminded.domain.TeacherMonthlyTimetable;
 import com.foxminded.config.SpringJdbcConfig;
-import com.foxminded.dao.GroupDAO;
-import com.foxminded.dao.GroupDailyTimetableDAO;
-import com.foxminded.dao.GroupMonthlyTimetableDAO;
-import com.foxminded.dao.LessonDAO;
-import com.foxminded.dao.StudentDAO;
-import com.foxminded.dao.SubjectDAO;
-import com.foxminded.dao.TeacherDAO;
-import com.foxminded.dao.TeacherDailyTimetableDAO;
-import com.foxminded.dao.TeacherMonthlyTimetableDAO;
+import com.foxminded.dao.GroupDao;
+import com.foxminded.dao.GroupDailyTimetableDao;
+import com.foxminded.dao.GroupMonthlyTimetableDao;
+import com.foxminded.dao.LessonDao;
+import com.foxminded.dao.StudentDao;
+import com.foxminded.dao.SubjectDao;
+import com.foxminded.dao.TeacherDao;
+import com.foxminded.dao.TeacherDailyTimetableDao;
+import com.foxminded.dao.TeacherMonthlyTimetableDao;
 
 @SpringBootApplication
 public class Main {
@@ -36,116 +36,116 @@ public class Main {
         SpringApplication.run(Main.class, args);
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringJdbcConfig.class);
 
-        TeacherDAO teacherDAO = context.getBean(TeacherDAO.class);
-        SubjectDAO subjectDAO = context.getBean(SubjectDAO.class);
+        TeacherDao teacherDao = context.getBean(TeacherDao.class);
+        SubjectDao subjectDao = context.getBean(SubjectDao.class);
 
-        for (Subject subject : subjectDAO.findAllSubjects()) {
+        for (Subject subject : subjectDao.findAllSubjects()) {
             System.out.println(subject);
         }
 
         System.out.println("List of teachers is:");
 
-        for (Teacher teacher : teacherDAO.findAllTeachers()) {
+        for (Teacher teacher : teacherDao.findAllTeachers()) {
             System.out.println(teacher);
         }
 
         System.out.println("\nGet teacher with ID 2");
 
-        Teacher teacherById = teacherDAO.findTeacherById(2);
+        Teacher teacherById = teacherDao.findTeacherById(2);
         System.out.println(teacherById);
 
         System.out.println("\nCreating teacher: ");
 
         Teacher t = new Teacher(5, "Alexandra", "Clarkson", 43);
         System.out.println(t);
-        teacherDAO.createTeacher(t);
+        teacherDao.createTeacher(t);
         System.out.println("\nList of teacher is:");
 
-        for (Teacher teacher : teacherDAO.findAllTeachers()) {
+        for (Teacher teacher : teacherDao.findAllTeachers()) {
             System.out.println(teacher);
         }
 
         System.out.println("\nUpdate person with ID 4");
 
-        Teacher tteacher = teacherDAO.findTeacherById(1);
+        Teacher tteacher = teacherDao.findTeacherById(1);
         tteacher.setLastName("Williamson");
-        teacherDAO.updateTeacher(tteacher);
+        teacherDao.updateTeacher(tteacher);
 
         System.out.println("\nList of teachers:");
-        for (Teacher teacher : teacherDAO.findAllTeachers()) {
+        for (Teacher teacher : teacherDao.findAllTeachers()) {
             System.out.println(teacher);
         }
 
         System.out.println("List of subjects for teacher " + tteacher.getLastName());
-        System.out.println(teacherDAO.findTeacherSubjects(tteacher));
+        System.out.println(teacherDao.findTeacherSubjects(tteacher));
 
-        Subject subject = subjectDAO.findSubjectById(4);
+        Subject subject = subjectDao.findSubjectById(4);
 
         System.out.println("List of teachers for subject " + subject.getName());
-        System.out.println(subjectDAO.findSubjectTeachers(subject));
+        System.out.println(subjectDao.findSubjectTeachers(subject));
 
-        StudentDAO studentDAO = context.getBean(StudentDAO.class);
-        Student student = studentDAO.findStudentById(3);
+        StudentDao studentDao = context.getBean(StudentDao.class);
+        Student student = studentDao.findStudentById(3);
         System.out.println(student);
         System.out.println(student.getFirstName() + " " + student.getLastName() + "'s group is: "
-                + studentDAO.findStudentGroup(student));
+                + studentDao.findStudentGroup(student));
 
-        GroupDAO groupDAO = context.getBean(GroupDAO.class);
-        Group group = groupDAO.findGroupById(4);
-        System.out.println(groupDAO.findStudentsGroup(group));
+        GroupDao groupDao = context.getBean(GroupDao.class);
+        Group group = groupDao.findGroupById(4);
+        System.out.println(groupDao.findStudentsGroup(group));
 
-        LessonDAO lessonDAO = context.getBean(LessonDAO.class);
-        Lesson lesson = lessonDAO.findLessonById(2);
+        LessonDao lessonDao = context.getBean(LessonDao.class);
+        Lesson lesson = lessonDao.findLessonById(2);
         System.out.println(lesson);
 
-        System.out.println("Classroom: " + lessonDAO.findClassroom(lesson));
-        System.out.println("Teacher: " + lessonDAO.findTeacher(lesson));
-        System.out.println("Subject: " + lessonDAO.findSubject(lesson));
-        System.out.println("Group: " + lessonDAO.findGroup(lesson));
+        System.out.println("Classroom: " + lessonDao.findClassroom(lesson));
+        System.out.println("Teacher: " + lessonDao.findTeacher(lesson));
+        System.out.println("Subject: " + lessonDao.findSubject(lesson));
+        System.out.println("Group: " + lessonDao.findGroup(lesson));
         System.out.println("Final: " + lesson);
 
-        TeacherDailyTimetableDAO teacherDailyTimetableDAO = context.getBean(TeacherDailyTimetableDAO.class);
-        TeacherDailyTimetable teacherDailyTimetable = teacherDailyTimetableDAO.findTeacherTimetableById(1);
+        TeacherDailyTimetableDao teacherDailyTimetableDao = context.getBean(TeacherDailyTimetableDao.class);
+        TeacherDailyTimetable teacherDailyTimetable = teacherDailyTimetableDao.findTeacherTimetableById(1);
         System.out.println(teacherDailyTimetable);
         DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
         Date day = df.parse("2020/09/03");
-        List<Lesson> lessons = teacherDailyTimetableDAO.findDailyLessons(teacherDailyTimetable, 1,
+        List<Lesson> lessons = teacherDailyTimetableDao.findDailyLessons(teacherDailyTimetable, 1,
                 new java.sql.Date(day.getTime()));
         System.out.println("-------------");
 
         for (Lesson teacherLesson : lessons) {
-            lessonDAO.findClassroom(teacherLesson);
-            lessonDAO.findTeacher(teacherLesson);
-            lessonDAO.findGroup(teacherLesson);
-            lessonDAO.findSubject(teacherLesson);
+            lessonDao.findClassroom(teacherLesson);
+            lessonDao.findTeacher(teacherLesson);
+            lessonDao.findGroup(teacherLesson);
+            lessonDao.findSubject(teacherLesson);
             System.out.println(teacherLesson + "\n");
 
         }
 
-        GroupDailyTimetableDAO groupDailyTimetableDAO = context.getBean(GroupDailyTimetableDAO.class);
-        GroupDailyTimetable groupDailyTimetable = groupDailyTimetableDAO.findGroupTimetableById(1);
+        GroupDailyTimetableDao groupDailyTimetableDao = context.getBean(GroupDailyTimetableDao.class);
+        GroupDailyTimetable groupDailyTimetable = groupDailyTimetableDao.findGroupTimetableById(1);
         System.out.println(groupDailyTimetable);
         Date day2 = df.parse("2020/09/03");
-        List<Lesson> lessonsForGroups = groupDailyTimetableDAO.findDailyLessons(groupDailyTimetable, 1,
+        List<Lesson> lessonsForGroups = groupDailyTimetableDao.findDailyLessons(groupDailyTimetable, 1,
                 new java.sql.Date(day2.getTime()));
         System.out.println("Group daily timetable: ");
 
         for (Lesson groupLesson : lessonsForGroups) {
-            lessonDAO.findClassroom(groupLesson);
-            lessonDAO.findTeacher(groupLesson);
-            lessonDAO.findGroup(groupLesson);
-            lessonDAO.findSubject(groupLesson);
+            lessonDao.findClassroom(groupLesson);
+            lessonDao.findTeacher(groupLesson);
+            lessonDao.findGroup(groupLesson);
+            lessonDao.findSubject(groupLesson);
             System.out.println(groupLesson + "\n");
         }
 
-        TeacherMonthlyTimetableDAO teacherMonthlyTimetableDAO = context.getBean(TeacherMonthlyTimetableDAO.class);
-        TeacherMonthlyTimetable teacherMonthlyTimetable = teacherMonthlyTimetableDAO.findTeacherTimetableById(1);
-        System.out.println("Teacher monthly time table:\n" + teacherMonthlyTimetableDAO.findMonthlyLessons(teacherMonthlyTimetable, 1, 2020, 9));
+        TeacherMonthlyTimetableDao teacherMonthlyTimetableDao = context.getBean(TeacherMonthlyTimetableDao.class);
+        TeacherMonthlyTimetable teacherMonthlyTimetable = teacherMonthlyTimetableDao.findTeacherTimetableById(1);
+        System.out.println("Teacher monthly time table:\n" + teacherMonthlyTimetableDao.findMonthlyLessons(teacherMonthlyTimetable, 1, 2020, 9));
         
         
-        GroupMonthlyTimetableDAO groupMonthlyTimetableDAO = context.getBean(GroupMonthlyTimetableDAO.class);
-        GroupMonthlyTimetable groupMonthlyTimetable = groupMonthlyTimetableDAO.findGroupTimetableById(1);
-        System.out.println("Group monthly time table:\n" + groupMonthlyTimetableDAO.findMonthlyLessons(groupMonthlyTimetable, 1, 2020, 9));
+        GroupMonthlyTimetableDao groupMonthlyTimetableDao = context.getBean(GroupMonthlyTimetableDao.class);
+        GroupMonthlyTimetable groupMonthlyTimetable = groupMonthlyTimetableDao.findGroupTimetableById(1);
+        System.out.println("Group monthly time table:\n" + groupMonthlyTimetableDao.findMonthlyLessons(groupMonthlyTimetable, 1, 2020, 9));
         
         context.close();
     }

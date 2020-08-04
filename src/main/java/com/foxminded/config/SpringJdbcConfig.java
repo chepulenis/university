@@ -8,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 @Configuration
@@ -17,7 +18,6 @@ public class SpringJdbcConfig {
 
     @Autowired
     Environment environment;
-
     private final String URL = "url";
     private final String USER = "dbuser";
     private final String DRIVER = "driver";
@@ -32,4 +32,12 @@ public class SpringJdbcConfig {
         driverManagerDataSource.setDriverClassName(environment.getProperty(DRIVER));
         return driverManagerDataSource;
     }
+    
+    @Bean
+    public JdbcTemplate jdbcTemplate() {
+        var template = new JdbcTemplate();
+        template.setDataSource(dataSource());
+        return template;
+    }
+
 }

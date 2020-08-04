@@ -2,8 +2,6 @@ package com.foxminded.dao;
 
 import java.util.List;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -12,7 +10,7 @@ import com.foxminded.domain.Classroom;
 import com.foxminded.mapper.ClassroomMapper;
 
 @Component
-public class ClassroomDAO {
+public class ClassroomDao {
     
     private final String SQL_FIND_CLASSROOM = "select * from clasrooms where id = ?";
     private final String SQL_DELETE_CLASSROOM = "delete from clasrooms where id = ?";
@@ -21,10 +19,10 @@ public class ClassroomDAO {
     private final String SQL_INSERT_CLASSROOM = "insert into clasrooms(id, name, size) values(?,?,?)";
     
     private JdbcTemplate jdbcTemplate;
-
+  
     @Autowired
-    public ClassroomDAO(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
+    public ClassroomDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     public Classroom findClassroomById(int id) {

@@ -1,7 +1,5 @@
 package com.foxminded.dao;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -18,7 +16,7 @@ import com.foxminded.mapper.SubjectMapper;
 import com.foxminded.mapper.TeacherMapper;
 
 @Component
-public class LessonDAO {
+public class LessonDao {
 
     private final String SQL_FIND_LESSON = "select * from lessons where id = ?";
     private final String SQL_FIND_LESSON_CLASSROOM =  "select * from classrooms inner join lessons "
@@ -33,8 +31,8 @@ public class LessonDAO {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public LessonDAO(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
+    public LessonDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     public Lesson findLessonById (int id) {

@@ -2,8 +2,6 @@ package com.foxminded.dao;
 
 import java.util.List;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -14,7 +12,7 @@ import com.foxminded.mapper.SubjectMapper;
 import com.foxminded.mapper.TeacherMapper;
 
 @Component
-public class TeacherDAO {
+public class TeacherDao {
 
     private final String SQL_FIND_TEACHER = "select * from teachers where id = ?";
     private final String SQL_DELETE_TEACHER = "delete from teachers where id = ?";
@@ -27,8 +25,8 @@ public class TeacherDAO {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public TeacherDAO(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
+    public TeacherDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     public Teacher findTeacherById(int id) {

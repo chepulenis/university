@@ -2,8 +2,6 @@ package com.foxminded.dao;
 
 import java.util.List;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -14,7 +12,7 @@ import com.foxminded.mapper.GroupMonthlyTimetableMapper;
 import com.foxminded.mapper.LessonMapper;
 
 @Component
-public class GroupMonthlyTimetableDAO {
+public class GroupMonthlyTimetableDao {
     
     private final String SQL_FIND_GROUP_DAILY_TIMETABLE = "select * from group_monthly_timetable where id = ?";
     private final String SQL_FIND_MONTHLY_LESSONS_FOR_GROUP = "select lessons.* from lessons where lessons.group_id = ? and "
@@ -23,8 +21,8 @@ public class GroupMonthlyTimetableDAO {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public GroupMonthlyTimetableDAO(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
+    public GroupMonthlyTimetableDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     public GroupMonthlyTimetable findGroupTimetableById(int id) {

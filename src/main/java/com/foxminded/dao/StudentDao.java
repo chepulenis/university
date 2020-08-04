@@ -2,8 +2,6 @@ package com.foxminded.dao;
 
 import java.util.List;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -14,7 +12,7 @@ import com.foxminded.mapper.GroupMapper;
 import com.foxminded.mapper.StudentMapper;
 
 @Component
-public class StudentDAO {
+public class StudentDao {
 
     private final String SQL_FIND_STUDENT = "select * from students where id = ?";
     private final String SQL_DELETE_STUDENT = "delete from students where id = ?";
@@ -25,10 +23,10 @@ public class StudentDAO {
             + "on groups.id = students.group_id where students.id = ?";
 
     private JdbcTemplate jdbcTemplate;
-    
+
     @Autowired
-    public StudentDAO(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate(dataSource);
+    public StudentDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     public Student findStudentById(int id) {
