@@ -3,6 +3,10 @@ package com.foxminded.domain;
 public class Student extends Person{
 
     private Group group;
+
+    public Student() {
+        
+    }
     
     public Student(int id, String firstName, String lastName, int age, Group group) {
         super(id, firstName, lastName, age);
@@ -15,10 +19,6 @@ public class Student extends Person{
 
     public void setGroup(Group group) {
         this.group = group;
-    }
-
-    public Student() {
-        
     }
 
     @Override

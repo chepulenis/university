@@ -14,7 +14,7 @@ import com.foxminded.mapper.TeacherMonthlyTimetableMapper;
 @Component
 public class TeacherMonthlyTimetableDao {
     private final String SQL_FIND_TEACHER_DAILY_TIMETABLE = "select * from teacher_monthly_timetable where id = ?";
-    private final String SQL_FIND_MONTHLY_LESSONS_FOR_TEACHER = "select lessons.* from lessons where lessons.teacher_id = ? and "
+    private final String SQL_FIND_MONTHLY_LESSONS_FOR_TEACHER = "select * from lessons where lessons.teacher_id = ? and "
             + "extract (year from lessons.start_time) = ? and extract (month from lessons.start_time) = ? order by lessons.start_time";
 
     private JdbcTemplate jdbcTemplate;

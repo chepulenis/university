@@ -15,7 +15,7 @@ import com.foxminded.mapper.LessonMapper;
 public class GroupMonthlyTimetableDao {
     
     private final String SQL_FIND_GROUP_DAILY_TIMETABLE = "select * from group_monthly_timetable where id = ?";
-    private final String SQL_FIND_MONTHLY_LESSONS_FOR_GROUP = "select lessons.* from lessons where lessons.group_id = ? and "
+    private final String SQL_FIND_MONTHLY_LESSONS_FOR_GROUP = "select * from lessons where lessons.group_id = ? and "
             + "extract (year from lessons.start_time) = ? and extract (month from lessons.start_time) = ? order by lessons.start_time";
 
     private JdbcTemplate jdbcTemplate;
