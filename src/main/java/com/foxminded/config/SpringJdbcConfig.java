@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 @Configuration
-@ComponentScan("com.foxminded.dao")
+@ComponentScan({ "com.foxminded.dao", "com.foxminded.service" })
 @PropertySource("classpath:application.properties")
 public class SpringJdbcConfig {
 
@@ -32,7 +32,7 @@ public class SpringJdbcConfig {
         driverManagerDataSource.setDriverClassName(environment.getProperty(DRIVER));
         return driverManagerDataSource;
     }
-    
+
     @Bean
     public JdbcTemplate jdbcTemplate() {
         var template = new JdbcTemplate();

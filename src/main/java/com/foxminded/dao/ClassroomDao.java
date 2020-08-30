@@ -12,11 +12,11 @@ import com.foxminded.mapper.ClassroomMapper;
 @Component
 public class ClassroomDao {
     
-    private final String SQL_FIND_CLASSROOM = "select * from clasrooms where id = ?";
-    private final String SQL_DELETE_CLASSROOM = "delete from clasrooms where id = ?";
-    private final String SQL_UPDATE_CLASSROOM = "update clasrooms set name = ?, size  = ? where id = ?";
-    private final String SQL_FIND_ALL_CLASSROOMS = "select * from clasrooms";
-    private final String SQL_INSERT_CLASSROOM = "insert into clasrooms(id, name, size) values(?,?,?)";
+    private final String SQL_FIND_CLASSROOM = "select * from classrooms where id = ?";
+    private final String SQL_DELETE_CLASSROOM = "delete from classrooms where id = ?";
+    private final String SQL_UPDATE_CLASSROOM = "update classrooms set name = ?, size  = ? where id = ?";
+    private final String SQL_FIND_ALL_CLASSROOMS = "select * from classrooms";
+    private final String SQL_INSERT_CLASSROOM = "insert into classrooms(id, name, size) values(?,?,?)";
     
     private JdbcTemplate jdbcTemplate;
   

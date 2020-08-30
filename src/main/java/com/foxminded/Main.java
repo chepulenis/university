@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.foxminded.domain.Classroom;
 import com.foxminded.domain.Group;
 import com.foxminded.domain.GroupDailyTimetable;
 import com.foxminded.domain.GroupMonthlyTimetable;
@@ -19,6 +20,7 @@ import com.foxminded.domain.Subject;
 import com.foxminded.domain.Teacher;
 import com.foxminded.domain.TeacherDailyTimetable;
 import com.foxminded.domain.TeacherMonthlyTimetable;
+import com.foxminded.service.ClassroomService;
 import com.foxminded.config.SpringJdbcConfig;
 import com.foxminded.dao.GroupDao;
 import com.foxminded.dao.GroupDailyTimetableDao;
@@ -140,13 +142,17 @@ public class Main {
 
         TeacherMonthlyTimetableDao teacherMonthlyTimetableDao = context.getBean(TeacherMonthlyTimetableDao.class);
         TeacherMonthlyTimetable teacherMonthlyTimetable = teacherMonthlyTimetableDao.findTeacherTimetableById(1);
-        System.out.println("Teacher monthly time table:\n" + teacherMonthlyTimetableDao.findMonthlyLessons(teacherMonthlyTimetable, 1, 2020, 9));
-        
-        
+        System.out.println("Teacher monthly time table:\n"
+                + teacherMonthlyTimetableDao.findMonthlyLessons(teacherMonthlyTimetable, 1, 2020, 9));
+
         GroupMonthlyTimetableDao groupMonthlyTimetableDao = context.getBean(GroupMonthlyTimetableDao.class);
         GroupMonthlyTimetable groupMonthlyTimetable = groupMonthlyTimetableDao.findGroupTimetableById(1);
-        System.out.println("Group monthly time table:\n" + groupMonthlyTimetableDao.findMonthlyLessons(groupMonthlyTimetable, 1, 2020, 9));
-        
+        System.out.println("Group monthly time table:\n"
+                + groupMonthlyTimetableDao.findMonthlyLessons(groupMonthlyTimetable, 1, 2020, 9));
+
+        ClassroomService classroomService = context.getBean(ClassroomService.class);
+        classroomService.updateClassroom(new Classroom(2, "Class of Arts", 33));
+
         context.close();
     }
 }
