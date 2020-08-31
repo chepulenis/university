@@ -46,10 +46,10 @@ public class StudentService {
         return dao.createStudent(student);
     }
     
-    public Group findStudentGroup(Student student) throws StudentNotAssignedException {
+    public Group findStudentGroup(Student student){
         if (student.getGroup() == null) {
             logger.error("Student is not assigned to any group.");
-            throw new StudentNotAssignedException ("Student is not assigned to any group.");
+            throw new StudentNotAssignedException (student.getFirstName(), student.getLastName());
         }
         Group group = dao.findStudentGroup(student);
         logger.info("Student {} founded in group {}", student, group);

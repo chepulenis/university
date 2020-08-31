@@ -14,14 +14,14 @@ import com.foxminded.exception.TimetableNotDefinedException;
 
 @Service
 public class TeacherMonthlyTimetableService {
-    
+
     private final static int JUNE = 6;
     private final static int AUGUST = 8;
-    
+
     @Autowired
     private TeacherMonthlyTimetableDao dao;
     private static final Logger logger = LoggerFactory.getLogger(TeacherMonthlyTimetableService.class);
-    
+
     public TeacherMonthlyTimetable findTeacherTimetableById(int id) {
         TeacherMonthlyTimetable teacherMonthlyTimetable = dao.findTeacherTimetableById(id);
         logger.info("Teacher monthly timetable {} by id {} founded", teacherMonthlyTimetable, id);
@@ -29,7 +29,7 @@ public class TeacherMonthlyTimetableService {
     }
 
     public List<Lesson> findMonthlyLessons(TeacherMonthlyTimetable teacherMonthlyTimetable, int teacherId, int year,
-            int month) throws TimetableNotDefinedException {
+            int month) {
         if (month >= JUNE && month <= AUGUST) {
             logger.error("It's summer holidays. Timetable is not avialable.");
             throw new TimetableNotDefinedException("It's summer holidays. Timetable is not avialable.");
