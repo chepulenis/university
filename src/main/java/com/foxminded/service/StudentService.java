@@ -48,7 +48,6 @@ public class StudentService {
     
     public Group findStudentGroup(Student student){
         if (student.getGroup() == null) {
-            logger.error("Student is not assigned to any group.");
             throw new StudentNotAssignedException (student.getFirstName(), student.getLastName());
         }
         Group group = dao.findStudentGroup(student);

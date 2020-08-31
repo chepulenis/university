@@ -31,7 +31,6 @@ public class GroupMonthlyTimetableService {
     public List<Lesson> findMonthlyLessons(GroupMonthlyTimetable groupMonthlyTimetable, int groupId, int year,
             int month) {
         if (month >= JUNE && month <= AUGUST) {
-            logger.error("It's summer holidays. Timetable is not avialable.");
             throw new TimetableNotDefinedException("It's summer holidays. Timetable is not avialable.");
         }
         List<Lesson> lessons = dao.findMonthlyLessons(groupMonthlyTimetable, groupId, year, month);
