@@ -17,7 +17,7 @@ public class GroupDao {
     private final String SQL_FIND_GROUP = "select * from groups where id = ?";
     private final String SQL_DELETE_GROUP = "delete from groups where id = ?";
     private final String SQL_UPDATE_GROUP = "update groups set name = ? where id = ?";
-    private final String SQL_GET_ALL_GROUPS = "select * from groups";
+    private final String SQL_GET_ALL_GROUPS = "select * from groups order by id";
     private final String SQL_INSERT_GROUP = "insert into groups(id, name) values(?,?)";
     private final String SQL_GET_STUDENTS_GROUP = "select * from students inner join groups "
             + "on students.group_id = groups.id where group_id = ?";
@@ -37,8 +37,8 @@ public class GroupDao {
         return jdbcTemplate.query(SQL_GET_ALL_GROUPS, new GroupMapper());
     }
 
-    public boolean deleteGroup(Group group) {
-        return jdbcTemplate.update(SQL_DELETE_GROUP, group.getId()) > 0;
+    public boolean deleteGroup(int id) {
+        return jdbcTemplate.update(SQL_DELETE_GROUP, id) > 0;
     }
 
     public boolean updateGroup(Group group) {

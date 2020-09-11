@@ -21,19 +21,19 @@ public class StudentService {
 
     public Student findStudentById(int id) {
         Student student = dao.findStudentById(id);
-        logger.info("Student {} by id {} founded", student, id);
+        logger.info("Student {} by id {} found", student, id);
         return student;
     }
 
     public List<Student> findAllStudents() {
         List<Student> students = dao.findAllStudents();
-        logger.info("All students {} founded", students);
+        logger.info("All students {} have been found", students);
         return students;
     }
     
-    public boolean deleteStudent(Student student) {
-        logger.info("Student {} deleted", student);
-        return dao.deleteStudent(student);
+    public boolean deleteStudent(int id) {
+        logger.info("Student {} deleted", id);
+        return dao.deleteStudent(id);
     }
     
     public boolean updateStudent(Student student) {
@@ -51,8 +51,8 @@ public class StudentService {
             throw new StudentNotAssignedException (student.getFirstName(), student.getLastName());
         }
         Group group = dao.findStudentGroup(student);
-        logger.info("Student {} founded in group {}", student, group);
+        logger.info("Student {} has been found in group {}", student, group);
         return group;
     }
-
+    
 }

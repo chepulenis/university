@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>University application</title>
+</head>
+<body>
+<div align="center">
+    <h1>University application</h1>
+    <a>Available options:</a>
+    <p><a th:href="@{classrooms}">Classrooms</a></p>
+    <p><a th:href="@{groups}">Groups</a></p>
+    <p><a th:href="@{lessons}">Lessons</a></p>
+    <p><a th:href="@{students}">Students</a></p>
+    <p><a th:href="@{subjects}">Subjects</a></p>
+    <p><a th:href="@{teachers}">Teachers</a></p>
+    <p><a th:href="@{group_timetable}">Group timetable</a></p>
+    <p><a th:href="@{teacher_timetable}">Teacher timetable</a></p>
+</div>   
+</body>
+</html>

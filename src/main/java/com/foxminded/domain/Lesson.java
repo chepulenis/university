@@ -1,6 +1,8 @@
 package com.foxminded.domain;
 
-import java.sql.Timestamp;
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class Lesson {
     
@@ -9,15 +11,18 @@ public class Lesson {
     private Teacher teacher;
     private Subject subject;
     private Group group;
-    private Timestamp timestamp;
     
-    public Lesson(int id, Classroom classroom, Teacher teacher, Subject subject, Group group, Timestamp timestamp) {
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private Date startTime;
+    
+    public Lesson(int id, Classroom classroom, Teacher teacher, Subject subject, Group group, Date startTime) {
         this.id = id;
         this.classroom = classroom;
         this.teacher = teacher;
         this.subject = subject;
         this.group = group;
-        this.timestamp = timestamp;
+        this.startTime = startTime;
+        
     }
     
     public Lesson() {
@@ -47,8 +52,8 @@ public class Lesson {
         return group;
     }
     
-    public Timestamp getTimestamp() {
-        return timestamp;
+    public Date getStartTime() {
+        return startTime;
     }
     
     public void setClassroom(Classroom classroom) {
@@ -67,8 +72,8 @@ public class Lesson {
         this.group = group;
     }
     
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
     }
 
     @Override
@@ -76,7 +81,7 @@ public class Lesson {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((classroom == null) ? 0 : classroom.hashCode());
-        result = prime * result + ((timestamp == null) ? 0 : timestamp.hashCode());
+        result = prime * result + ((startTime == null) ? 0 : startTime.hashCode());
         result = prime * result + ((group == null) ? 0 : group.hashCode());
         result = prime * result + id;
         result = prime * result + ((subject == null) ? 0 : subject.hashCode());
@@ -98,10 +103,10 @@ public class Lesson {
                 return false;
         } else if (!classroom.equals(other.classroom))
             return false;
-        if (timestamp == null) {
-            if (other.timestamp != null)
+        if (startTime == null) {
+            if (other.startTime != null)
                 return false;
-        } else if (!timestamp.equals(other.timestamp))
+        } else if (!startTime.equals(other.startTime))
             return false;
         if (group == null) {
             if (other.group != null)
@@ -126,7 +131,7 @@ public class Lesson {
     @Override
     public String toString() {
         return "Lesson [id=" + id + ", classroom=" + classroom + ", teacher=" + teacher + ", subject=" + subject
-                + ", group=" + group + ", timestamp=" + timestamp + "]";
+                + ", group=" + group + ", timestamp=" + startTime + "]";
     }
 
 

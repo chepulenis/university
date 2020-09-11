@@ -20,19 +20,19 @@ public class GroupService {
     
     public Group findGroupById(int id) {
         Group group = dao.findGroupById(id);
-        logger.info("Group {} by id {} founded", group, id);
+        logger.info("Group {} by id {} has been found", group, id);
         return group;
     }
     
     public List<Group> findAllGroups() {
         List<Group> groups = dao.findAllGroups();
-        logger.info("All groups {} founded", groups);
+        logger.info("All groups {} have been found", groups);
         return dao.findAllGroups();
     }
     
-    public boolean deleteGroup(Group group) {
-        logger.info("Group {} deleted", group);
-        return dao.deleteGroup(group);
+    public boolean deleteGroup(int id) {
+        logger.info("Group {} deleted", id);
+        return dao.deleteGroup(id);
     }
     
     public boolean updateGroup(Group group) {

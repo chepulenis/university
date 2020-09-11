@@ -19,19 +19,19 @@ public class ClassroomService {
 
     public Classroom findClassroomById(int id) {
         Classroom classroom = dao.findClassroomById(id);
-        logger.info("Classroom {} by id {} founded", classroom, id);
+        logger.info("Classroom {} by id {} has been found", classroom, id);
         return classroom;
     }
 
     public List<Classroom> findAllClassrooms() {
         List <Classroom> classrooms = dao.findAllClassrooms();
-        logger.info("All classrooms {} founded", classrooms);
+        logger.info("All classrooms {} have been found", classrooms);
         return classrooms;
     }
 
-    public boolean deleteClassrom(Classroom classroom) {
-        logger.info("Classroom {} deleted", classroom);
-        return dao.deleteClassrom(classroom);
+    public boolean deleteClassroom(int id) {
+        logger.info("Classroom {} deleted", id);
+        return dao.deleteClassroom(id);
     }
 
     public boolean updateClassroom(Classroom classroom) {

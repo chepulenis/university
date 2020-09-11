@@ -20,19 +20,19 @@ public class SubjectService {
     
     public Subject findSubjectById(int id) {
         Subject subject = dao.findSubjectById(id); 
-        logger.info("Subject {} by id {} founded", subject, id);
+        logger.info("Subject {} by id {} has been found", subject, id);
         return subject;
     }
 
     public List<Subject> findAllSubjects() {
         List<Subject> subjects = dao.findAllSubjects();
-        logger.info("All subjects {} founded", subjects);
+        logger.info("All subjects {} have been found", subjects);
         return subjects;
     }
     
-    public boolean deleteSubject(Subject subject) {
-        logger.info("Subject {} deleted", subject);
-        return dao.deleteSubject(subject);
+    public boolean deleteSubject(int id) {
+        logger.info("Subject {} deleted", id);
+        return dao.deleteSubject(id);
     }
     
     public boolean updateSubject(Subject subject) {
@@ -47,7 +47,7 @@ public class SubjectService {
     
     public List<Teacher> findSubjectTeachers(Subject subject){
         List<Teacher> teachers = dao.findSubjectTeachers(subject);
-        logger.info("Teachers {} for subject {} founded", teachers, subject);
+        logger.info("Teachers {} for subject {} have been found", teachers, subject);
         return teachers;
     }
     

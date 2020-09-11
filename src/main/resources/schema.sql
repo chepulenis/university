@@ -30,7 +30,7 @@ subject_id integer references subjects (id) on delete cascade
 
 create table classrooms(
 id serial not null primary key,
-name varchar(20) not null,
+name varchar(40) not null,
 size integer not null
 );
 
@@ -137,30 +137,9 @@ insert into lessons (id, classroom_id, teacher_id, subject_id, group_id, start_t
 (13, 1, 2, 2, 4, '2020-09-07 10:00'),
 (14, 4, 1, 2, 5, '2020-09-07 11:00'),
 (15, 4, 4, 3, 1, '2020-09-07 12:00'),
-(16, 3, 1, 1, 2, '2020-10-03 08:00');
-
-
-insert into teacher_daily_timetable (id, date) values 
-(1, '2020-09-03'),
-(2, '2020-09-04'),
-(3, '2020-09-07'),
-(4, '2020-09-08');
-
-insert into group_daily_timetable (id, date) values 
-(1, '2020-09-03'),
-(2, '2020-09-04'),
-(3, '2020-09-07'),
-(4, '2020-09-08');
-
-insert into group_monthly_timetable (id, year, month) values 
-(1, 2020, 9),
-(2, 2020, 10),
-(3, 2020, 11);
-
-insert into teacher_monthly_timetable (id, year, month) values 
-(1, 2020, 9),
-(2, 2020, 10),
-(3, 2020, 11),
-(4, 2020, 12);
+(16, 3, 1, 1, 2, '2020-10-05 08:00'),
+(17, 1, 2, 2, 4, '2020-10-05 10:00'),
+(18, 4, 1, 2, 5, '2020-10-06 11:00'),
+(19, 4, 4, 3, 1, '2020-10-06 12:00');
 
 commit;

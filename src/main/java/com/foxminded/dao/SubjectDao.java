@@ -16,8 +16,8 @@ public class SubjectDao {
 
     private final String SQL_FIND_SUBJECT = "select * from subjects where id = ?";
     private final String SQL_DELETE_SUBJECT = "delete from subjects where id = ?";
-    private final String SQL_UPDATE_SUBJECT = "update teachers set name = ? where id = ?";
-    private final String SQL_GET_ALL_SUBJECTS = "select * from subjects";
+    private final String SQL_UPDATE_SUBJECT = "update subjects set name = ? where id = ?";
+    private final String SQL_GET_ALL_SUBJECTS = "select * from subjects order by id";
     private final String SQL_INSERT_SUBJECT = "insert into subjects(id, name) values(?,?)";
     private final String SQL_GET_SUBJECT_TEACHERS = "select * from teachers inner join teachers_subjects "
             + "on teachers.id = teachers_subjects.teacher_id where teachers_subjects.subject_id = ?";
@@ -37,12 +37,12 @@ public class SubjectDao {
         return jdbcTemplate.query(SQL_GET_ALL_SUBJECTS, new SubjectMapper());
     }
 
-    public boolean deleteSubject(Subject subject) {
-        return jdbcTemplate.update(SQL_DELETE_SUBJECT, subject.getId()) > 0;
+    public boolean deleteSubject(int id) {
+        return jdbcTemplate.update(SQL_DELETE_SUBJECT, id) > 0;
     }
 
     public boolean updateSubject(Subject subject) {
-        return jdbcTemplate.update(SQL_UPDATE_SUBJECT, subject.getId(), subject.getName()) > 0;
+        return jdbcTemplate.update(SQL_UPDATE_SUBJECT, subject.getName(), subject.getId()) > 0;
     }
 
     public boolean createSubject(Subject subject) {

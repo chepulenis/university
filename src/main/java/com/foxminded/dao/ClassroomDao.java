@@ -15,7 +15,7 @@ public class ClassroomDao {
     private final String SQL_FIND_CLASSROOM = "select * from classrooms where id = ?";
     private final String SQL_DELETE_CLASSROOM = "delete from classrooms where id = ?";
     private final String SQL_UPDATE_CLASSROOM = "update classrooms set name = ?, size  = ? where id = ?";
-    private final String SQL_FIND_ALL_CLASSROOMS = "select * from classrooms";
+    private final String SQL_FIND_ALL_CLASSROOMS = "select * from classrooms order by id";
     private final String SQL_INSERT_CLASSROOM = "insert into classrooms(id, name, size) values(?,?,?)";
     
     private JdbcTemplate jdbcTemplate;
@@ -33,8 +33,8 @@ public class ClassroomDao {
         return jdbcTemplate.query(SQL_FIND_ALL_CLASSROOMS, new ClassroomMapper());
     }
 
-    public boolean deleteClassrom(Classroom classroom) {
-        return jdbcTemplate.update(SQL_DELETE_CLASSROOM, classroom.getId()) > 0;
+    public boolean deleteClassroom(int id) {
+        return jdbcTemplate.update(SQL_DELETE_CLASSROOM, id) > 0;
     }
 
     public boolean updateClassroom(Classroom classroom) {

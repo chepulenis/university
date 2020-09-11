@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>University application</title>
+</head>
+<body>
+<div align="center">
+    <h1>Groups records</h1>
+    <a href="/new_group">Enter New Group</a>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="group : ${groups}">
+                <td th:text="${group.id}">ID</td>
+                <td th:text="${group.name}">Name</td>
+                <td>
+                    <a th:href="@{'/group_edit/' + ${group.id}}">Edit</a>
+                    <a th:href="@{'/group_delete/' + ${group.id}}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br/><br/>
+    <a href="/">back</a>
+</div>   
+</body>
+</html>

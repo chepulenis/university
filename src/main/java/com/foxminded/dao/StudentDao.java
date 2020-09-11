@@ -14,10 +14,12 @@ import com.foxminded.mapper.StudentMapper;
 @Component
 public class StudentDao {
 
-    private final String SQL_FIND_STUDENT = "select * from students where id = ?";
+    private final String SQL_FIND_STUDENT = "select students.id as student_id, first_name, last_name, age, group_id, groups.name "
+            + "from students inner join groups on students.group_id = groups.id where students.id = ?";
     private final String SQL_DELETE_STUDENT = "delete from students where id = ?";
-    private final String SQL_UPDATE_STUDENT = "update students set first_name = ?, last_name = ?, age  = ? where id = ?";
-    private final String SQL_GET_ALL_STUDENTS = "select * from students";
+    private final String SQL_UPDATE_STUDENT = "update students set first_name = ?, last_name = ?, age  = ?, group_id = ? where id = ?";
+    private final String SQL_GET_ALL_STUDENTS = "select students.id as student_id, first_name, last_name, age, group_id, groups.name "
+            + "from students inner join groups on students.group_id = groups.id order by students.id";
     private final String SQL_INSERT_STUDENT = "insert into students(id, first_name, last_name, age, group_id) values(?,?,?,?,?)";
     private final String SQL_GET_STUDENT_GROUP = "select * from groups inner join students "
             + "on groups.id = students.group_id where students.id = ?";
@@ -37,18 +39,18 @@ public class StudentDao {
         return jdbcTemplate.query(SQL_GET_ALL_STUDENTS, new StudentMapper());
     }
 
-    public boolean deleteStudent(Student student) {
-        return jdbcTemplate.update(SQL_DELETE_STUDENT, student.getId()) > 0;
+    public boolean deleteStudent(int id) {
+        return jdbcTemplate.update(SQL_DELETE_STUDENT, id) > 0;
     }
 
     public boolean updateStudent(Student student) {
         return jdbcTemplate.update(SQL_UPDATE_STUDENT, student.getFirstName(), student.getLastName(), student.getAge(),
-                student.getId()) > 0;
+                student.getGroup().getId(), student.getId()) > 0;
     }
 
     public boolean createStudent(Student student) {
         return jdbcTemplate.update(SQL_INSERT_STUDENT, student.getId(), student.getFirstName(), student.getLastName(),
-                student.getAge()) > 0;
+                student.getAge(), student.getGroup().getId()) > 0;
     }
 
     public Group findStudentGroup(Student student) {

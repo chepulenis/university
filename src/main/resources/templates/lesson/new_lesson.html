@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>New Lesson</title>
+</head>
+<body>
+    <div align="center">
+        <h1>Enter New Lesson</h1>
+        <br />
+        <form action="#" th:action="@{/lesson_save}" th:object="${lesson}"
+            method="post">
+ 
+            <table border="0" cellpadding="10">
+                <tr>
+                    <td>ID:</td>
+                    <td><input type="text" th:field="*{id}" /></td>
+                </tr>
+                <tr>
+                    <td>Classroom ID:</td>
+                    <td><input type="text" th:field="*{classroom.id}" /></td>
+                </tr>
+                <tr>
+                    <td>Teacher ID:</td>
+                    <td><input type="text" th:field="*{teacher.id}" /></td>
+                </tr>
+                <tr>
+                    <td>Subject ID:</td>
+                    <td><input type="text" th:field="*{subject.id}" /></td>
+                </tr>                
+                <tr>
+                    <td>Group ID:</td>
+                    <td><input type="text" th:field="*{group.id}" /></td>
+                </tr>      
+                <tr>
+                    <td>Start time:</td>
+                    <td><input type="datetime-local" th:field="*{startTime}" /></td>
+                </tr>             
+                <tr>
+                    <td colspan="2"><button type="submit">Save</button> </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+

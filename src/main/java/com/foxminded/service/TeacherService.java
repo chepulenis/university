@@ -20,19 +20,19 @@ public class TeacherService {
     
     public Teacher findTeacherById(int id) {
         Teacher teacher = dao.findTeacherById(id);;
-        logger.info("Teacher {} by id {} founded", teacher, id);
+        logger.info("Teacher {} by id {} has been found", teacher, id);
         return teacher;
     }
     
     public List<Teacher> findAllTeachers(){
         List <Teacher> teachers = dao.findAllTeachers();
-        logger.info("All teachers {} founded", teachers);
+        logger.info("All teachers {} have been found", teachers);
         return teachers;
     }
     
-    public boolean deleteTeacher(Teacher teacher) {
-        logger.info("Teacher {} deleted", teacher);
-        return dao.deleteTeacher(teacher);
+    public boolean deleteTeacher(int id) {
+        logger.info("Teacher {} deleted", id);
+        return dao.deleteTeacher(id);
     }
     
     public boolean updateTeacher(Teacher teacher) {
@@ -47,8 +47,8 @@ public class TeacherService {
     
     public List<Subject> findTeacherSubjects(Teacher teacher) {
         List<Subject> subjects = dao.findTeacherSubjects(teacher);
-        logger.info("Subjects {} for teacher {} founded", subjects, teacher);
+        logger.info("Subjects {} for teacher {} have been found", subjects, teacher);
         return subjects;
     }
-
+    
 }
