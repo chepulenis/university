@@ -1,35 +1,42 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8"/>
-<title>University application</title>
+<title>University Application</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div align="center">
-    <h1>Subjects records</h1>
-    <a href="/new_subject">Enter New Subject</a>
-    <br/><br/>
-    <table border="1" cellpadding="10">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="subject : ${subjects}">
-                <td th:text="${subject.id}">ID</td>
-                <td th:text="${subject.name}">Name</td>
-                <td>
-                    <a th:href="@{'/subject_edit/' + ${subject.id}}">Edit</a>
-                    <a th:href="@{'/subject_delete/' + ${subject.id}}">Delete</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <br/><br/>
-    <a href="/">back</a>
-</div>   
+	<div class="container" align="center">
+		<h1>Subjects records</h1>
+		<div class="row col-md-7 table-responsive table-hover table-striped">
+			<a href="/new_subject">Enter New Subject</a> <br /> <br />
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="subject : ${subjects}">
+						<td th:text="${subject.id}">ID</td>
+						<td th:text="${subject.name}">Name</td>
+						<td><a th:href="@{'/subject_edit/' + ${subject.id}}">Edit</a></td>
+						<td><a th:href="@{'/subject_delete/' + ${subject.id}}">Delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+			<br /> <br /> <a href="/">back</a>
+		</div>
+	</div>
 </body>
 </html>

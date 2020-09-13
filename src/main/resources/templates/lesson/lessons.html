@@ -1,43 +1,53 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8"/>
-<title>University application</title>
+<title>University Application</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div align="center">
-    <h1>Lessons records</h1>
-    <a href="/new_lesson">Enter New Lesson</a>
-    <br/><br/>
-    <table border="1" cellpadding="10">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Classroom</th>
-                <th>Teacher</th>
-                <th>Subject</th>
-                <th>Group</th>
-                <th>Start Time</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="lesson : ${lessons}">
-                <td th:text="${lesson.id}">ID</td>
-                <td th:text="${lesson.classroom.name}">Classroom</td>
-                <td th:text="${lesson.teacher.firstName + ' ' + lesson.teacher.lastName}">Teacher</td>
-                <td th:text="${lesson.subject.name}">Subject</td>
-                <td th:text="${lesson.group.name}">Group</td>
-                <td th:text="${#dates.format(lesson.startTime, 'dd MMMM yyyy HH:mm')}">Start time</td>
-                <td>
-                    <a th:href="@{'/lesson_edit/' + ${lesson.id}}">Edit</a>
-                    <a th:href="@{'/lesson_delete/' + ${lesson.id}}">Delete</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <br/><br/>
-    <a href="/">back</a>
-</div>   
+	<div class="container" align="center">
+		<h1>Lessons records</h1>
+		<div class="row col-md-10 table-responsive table-hover table-striped">
+			<a href="/new_lesson">Enter New Lesson</a> <br /> <br />
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Classroom</th>
+						<th>Teacher</th>
+						<th>Subject</th>
+						<th>Group</th>
+						<th>Start Time</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="lesson : ${lessons}">
+						<td th:text="${lesson.id}">ID</td>
+						<td th:text="${lesson.classroom.name}">Classroom</td>
+						<td
+							th:text="${lesson.teacher.firstName + ' ' + lesson.teacher.lastName}">Teacher</td>
+						<td th:text="${lesson.subject.name}">Subject</td>
+						<td th:text="${lesson.group.name}">Group</td>
+						<td
+							th:text="${#dates.format(lesson.startTime, 'dd MMMM yyyy HH:mm')}">Start
+							time</td>
+						<td><a th:href="@{'/lesson_edit/' + ${lesson.id}}">Edit</a></td>
+						<td><a th:href="@{'/lesson_delete/' + ${lesson.id}}">Delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+			<br /> <br /> <a href="/">back</a>
+		</div>
+	</div>
 </body>
 </html>

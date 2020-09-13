@@ -2,55 +2,64 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
+<title>University Application</title>
 <meta charset="utf-8" />
-<title>University application</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div align="center">
+	<div class="container" align="center">
 		<h1>Group timetable finder</h1>
-		<form action="#" th:action="@{/group_timetable_result}" method="post">
-			<h2>Daily:</h2>
-			<table border="0" cellpadding="10">
-				<tbody>
-					<tr>
-						<td>Group ID:</td>
-						<td><input type="text" name="groupId" /></td>
-					</tr>
-					<tr>
-						<td>Day:</td>
-						<td><input type="date" name="date" /></td>
-					</tr>
-					<tr>
-						<td colspan="2"><button type="submit">Find</button></td>
-					</tr>
-				</tbody>
-			</table>
-		</form>
+		<div class="row col-md-7 table-responsive table-hover table-striped">
+			<form action="#" th:action="@{/group_timetable_result}" method="post">
+				<h2>Daily:</h2>
+				<table class="table">
+					<tbody>
+						<tr>
+							<td>Group ID:</td>
+							<td><input type="text" name="groupId" /></td>
+						</tr>
+						<tr>
+							<td>Day:</td>
+							<td><input type="date" name="date" /></td>
+						</tr>
+						<tr>
+							<td colspan="2"><button type="submit">Find</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
 
-		<br />
-		<br />
+			<br /> <br />
 
-		<form action="#" th:action="@{/group_timetable_result}" method="post">
-			<h2>Monthly:</h2>
-			<table border="0" cellpadding="10">
-				<tbody>
-					<tr>
-						<td>Group ID:</td>
-						<td><input type="text" name="groupId" /></td>
-					</tr>
-					<tr>
-						<td>Month:</td>
-						<td><input type="month" name="month" /></td>
-					</tr>
-					<tr>
-						<td colspan="2"><button type="submit">Find</button></td>
-					</tr>
-				</tbody>
-			</table>
-		</form>
+			<form action="#" th:action="@{/group_timetable_result}" method="post">
+				<h2>Monthly:</h2>
+				<table class="table">
+					<tbody>
+						<tr>
+							<td>Group ID:</td>
+							<td><input type="text" name="groupId" /></td>
+						</tr>
+						<tr>
+							<td>Month:</td>
+							<td><input type="month" name="month" /></td>
+						</tr>
+						<tr>
+							<td colspan="2"><button type="submit">Find</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
 
-		<br />
-		<br /> <a href="/">back</a>
+			<br /> <br /> <a href="/">back</a>
+		</div>
 	</div>
 </body>
 </html>
