@@ -16,10 +16,10 @@
 </head>
 <body>
 	<div class="container" align="center">
-		<h1>Enter New Classroom</h1>
+		<h1>Enter New Student</h1>
 		<div class="row col-md-7 table-responsive table-hover table-striped">
-			<form action="#" th:action="@{/classroom_save}"
-				th:object="${classroom}" method="post">
+			<form action="#" th:action="@{/students}" th:object="${student}"
+				method="post">
 
 				<table class="table">
 					<tr>
@@ -27,15 +27,23 @@
 						<td><input type="text" th:field="*{id}" /></td>
 					</tr>
 					<tr>
-						<td>Classroom name:</td>
-						<td><input type="text" th:field="*{name}" /></td>
+						<td>Student first name:</td>
+						<td><input type="text" th:field="*{firstName}" /></td>
 					</tr>
 					<tr>
-						<td>Classroom size:</td>
-						<td><input type="text" th:field="*{size}" /></td>
+						<td>Student last name:</td>
+						<td><input type="text" th:field="*{lastName}" /></td>
 					</tr>
 					<tr>
-						<td colspan="2"><button type="submit">Save</button></td>
+						<td>Age:</td>
+						<td><input type="text" th:field="*{age}" /></td>
+					</tr>
+					<tr>
+						<td>Group ID:</td>
+						<td><input type="text" th:field="*{group.id}" /></td>
+					</tr>
+					<tr>
+						<td colspan="2"><button type="submit" class="btn btn-primary">Save</button></td>
 					</tr>
 				</table>
 			</form>

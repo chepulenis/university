@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>University Application</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -16,32 +18,24 @@
 </head>
 <body>
 	<div class="container" align="center">
-		<h1>Students records</h1>
+	<h1>Search result:</h1>
 		<div class="row col-md-7 table-responsive table-hover table-striped">
-			<a href="/new_student">Enter New Student</a> <br /> <br />
+
 			<table class="table">
 				<thead>
 					<tr>
 						<th>ID</th>
-						<th>First Name</th>
-						<th>Second Name</th>
-						<th>Age</th>
-						<th>Group Name</th>
+						<th>Name</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="student : ${students}">
-						<td th:text="${student.id}">ID</td>
-						<td th:text="${student.firstName}">First Name</td>
-						<td th:text="${student.lastName}">Last Name</td>
-						<td th:text="${student.age}">Age</td>
-						<td th:text="${student.group.name}">Group Name</td>
-						<td><a th:href="@{'/student_edit/' + ${student.id}}">Edit</a></td>
-						<td><a th:href="@{'/student_delete/' + ${student.id}}">Delete</a></td>
+					<tr>
+						<td th:text="${group.id}">ID</td>
+						<td th:text="${group.Name}">Group Name</td>
 					</tr>
 				</tbody>
 			</table>
-			<br /> <br /> <a href="/">back</a>
+			<a href="/">back</a>
 		</div>
 	</div>
 </body>

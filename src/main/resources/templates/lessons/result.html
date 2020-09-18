@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>University Application</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -16,21 +18,22 @@
 </head>
 <body>
 	<div class="container" align="center">
-		<h1>Found lessons:</h1>
-		<div class="row col-md-10 table-responsive table-hover table-striped">
+		<h1>Search result:</h1>
+		<div class="row col-md-7 table-responsive table-hover table-striped">
+
 			<table class="table">
 				<thead>
 					<tr>
-						<th>ID</th>
-						<th>Classroom</th>
-						<th>Teacher</th>
-						<th>Subject</th>
-						<th>Group</th>
-						<th>Start Time</th>
+                        <th>ID</th>
+                        <th>Classroom</th>
+                        <th>Teacher</th>
+                        <th>Subject</th>
+                        <th>Group</th>
+                        <th>Start Time</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="lesson : ${lessons}">
+					<tr>
 						<td th:text="${lesson.id}">ID</td>
 						<td th:text="${lesson.classroom.name}">Classroom</td>
 						<td
@@ -43,8 +46,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<br />
-			<br /> <a href="/">back</a>
+			<a href="/">back</a>
 		</div>
 	</div>
 </body>

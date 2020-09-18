@@ -18,7 +18,7 @@
 	<div class="container" align="center">
 		<h1>Teacher timetable finder</h1>
 		<div class="row col-md-7 table-responsive table-hover table-striped">
-			<form action="#" th:action="@{/teacher_timetable_result}"
+			<form action="#" th:action="@{/teacher-timetable-result}"
 				method="post">
 				<h2>Daily:</h2>
 				<table class="table">
@@ -32,7 +32,7 @@
 							<td><input type="date" name="date" /></td>
 						</tr>
 						<tr>
-							<td colspan="2"><button type="submit">Find</button></td>
+							<td colspan="2"><button type="submit" class="btn btn-primary">Find</button></td>
 						</tr>
 					</tbody>
 				</table>
@@ -40,7 +40,7 @@
 
 			<br /> <br />
 
-			<form action="#" th:action="@{/teacher_timetable_result}"
+			<form action="#" th:action="@{/teacher-timetable-result}"
 				method="post">
 				<h2>Monthly:</h2>
 				<table class="table">
@@ -54,13 +54,12 @@
 							<td><input type="month" name="month" /></td>
 						</tr>
 						<tr>
-							<td colspan="2"><button type="submit">Find</button></td>
+							<td colspan="2"><button type="submit" class="btn btn-primary">Find</button></td>
 						</tr>
 					</tbody>
 				</table>
 			</form>
-
-			<br /> <br /> <a href="/">back</a>
+        <a href="/">back</a>
 		</div>
 	</div>
 </body>

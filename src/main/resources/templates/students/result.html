@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>University Application</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -16,26 +18,30 @@
 </head>
 <body>
 	<div class="container" align="center">
-		<h1>Groups records</h1>
+	<h1>Search result:</h1>
 		<div class="row col-md-7 table-responsive table-hover table-striped">
-			<a href="/new_group">Enter New Group</a> <br /> <br />
+
 			<table class="table">
 				<thead>
 					<tr>
-						<th>ID</th>
-						<th>Name</th>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Age</th>
+                        <th>Group Name</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="group : ${groups}">
-						<td th:text="${group.id}">ID</td>
-						<td th:text="${group.name}">Name</td>
-						<td><a th:href="@{'/group_edit/' + ${group.id}}">Edit</a></td>
-						<td><a th:href="@{'/group_delete/' + ${group.id}}">Delete</a></td>
+					<tr>
+                        <td th:text="${student.id}">ID</td>
+                        <td th:text="${student.firstName}">First Name</td>
+                        <td th:text="${student.lastName}">Last Name</td>
+                        <td th:text="${student.age}">Age</td>
+                        <td th:text="${student.group.name}">Group Name</td>
 					</tr>
 				</tbody>
 			</table>
-			<br /> <br /> <a href="/">back</a>
+			<a href="/">back</a>
 		</div>
 	</div>
 </body>

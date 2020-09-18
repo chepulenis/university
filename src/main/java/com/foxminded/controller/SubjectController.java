@@ -5,10 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.foxminded.domain.Subject;
@@ -20,41 +23,49 @@ public class SubjectController {
     @Autowired
     private SubjectService service;
     
-    @RequestMapping("/subjects")
+    @GetMapping("/subjects")
     public String viewSubjectPage(Model model) {
         List<Subject> subjects = service.findAllSubjects();
         model.addAttribute("subjects", subjects);
-        return "subject/subjects";
+        return "subjects/subjects";
+    }
+    
+    @GetMapping("/subjects/{id}")
+    public ModelAndView getSubjectById(@RequestParam int id) {
+        Subject subject = service.findSubjectById(id);
+        ModelAndView mav = new ModelAndView("subjects/result");
+        mav.addObject("subject", subject);
+        return mav;
     }
 
-    @RequestMapping("/new_subject")
+    @GetMapping("/subjects/new-subject")
     public String showNewForm(Model model) {
         Subject subject = new Subject();
         model.addAttribute("subject", subject);
-        return "subject/new_subject";
+        return "subject/new-subject";
     }
 
-    @RequestMapping(value = "/subject_save", method = RequestMethod.POST)
+    @PostMapping("/subjects")
     public String save(@ModelAttribute("subject") Subject subject) {
         service.createSubject(subject);
         return "redirect:/subjects";
     }
 
-    @RequestMapping("/subject_edit/{id}")
+    @PutMapping("/subjects/{id}")
     public ModelAndView showEditForm(@PathVariable(name = "id") int id) {
-        ModelAndView mav = new ModelAndView("subject/subject_edit");
+        ModelAndView mav = new ModelAndView("subject/edit-subject");
         Subject subject = service.findSubjectById(id);
         mav.addObject("subject", subject);
         return mav;
     }
 
-    @RequestMapping(value = "/subject_update", method = RequestMethod.POST)
+    @PutMapping("/subjects")
     public String update(@ModelAttribute("subject") Subject subject) {
         service.updateSubject(subject);
         return "redirect:/subjects";
     }
 
-    @RequestMapping("/subject_delete/{id}")
+    @DeleteMapping("/subjects/{id}")
     public String delete(@PathVariable(name = "id") int id) {
         service.deleteSubject(id);
         return "redirect:/subjects";

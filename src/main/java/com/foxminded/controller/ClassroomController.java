@@ -5,10 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.foxminded.domain.Classroom;
@@ -20,41 +23,49 @@ public class ClassroomController {
     @Autowired
     private ClassroomService service;
     
-    @RequestMapping("/classrooms")
+    @GetMapping("/classrooms")
     public String viewClassroomPage(Model model) {
         List<Classroom> classrooms = service.findAllClassrooms();
         model.addAttribute("classrooms", classrooms);
-        return "classroom/classrooms";
+        return "classrooms/classrooms";
+    }
+    
+    @GetMapping("/classrooms/{id}")
+    public ModelAndView getClassroomById(@RequestParam int id) {
+        Classroom classroom = service.findClassroomById(id);
+        ModelAndView mav = new ModelAndView("classrooms/result");
+        mav.addObject("classroom", classroom);
+        return mav;
     }
 
-    @RequestMapping("/new_classroom")
+    @GetMapping("/classrooms/new-classroom")
     public String showNewForm(Model model) {
         Classroom classroom = new Classroom();
         model.addAttribute("classroom", classroom);
-        return "classroom/new_classroom";
+        return "classrooms/new-classroom";
     }
 
-    @RequestMapping(value = "/classroom_save", method = RequestMethod.POST)
+    @PostMapping("/classrooms")
     public String save(@ModelAttribute("classroom") Classroom classroom) {
         service.createClassroom(classroom);
         return "redirect:/classrooms";
     }
 
-    @RequestMapping("/classroom_edit/{id}")
+    @PutMapping("/classrooms/{id}")
     public ModelAndView showEditForm(@PathVariable(name = "id") int id) {
-        ModelAndView mav = new ModelAndView("classroom/classroom_edit");
+        ModelAndView mav = new ModelAndView("classrooms/edit-classroom");
         Classroom classroom = service.findClassroomById(id);
         mav.addObject("classroom", classroom);
         return mav;
     }
 
-    @RequestMapping(value = "/classroom_update", method = RequestMethod.POST)
+    @PutMapping("/classrooms")
     public String update(@ModelAttribute("classroom") Classroom classroom) {
         service.updateClassroom(classroom);
         return "redirect:/classrooms";
     }
 
-    @RequestMapping("/classroom_delete/{id}")
+    @DeleteMapping("/classrooms/{id}")
     public String delete(@PathVariable(name = "id") int id) {
         service.deleteClassroom(id);
         return "redirect:/classrooms";

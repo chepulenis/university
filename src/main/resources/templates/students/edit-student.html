@@ -16,10 +16,11 @@
 </head>
 <body>
 	<div class="container" align="center">
-		<h1>Edit lesson</h1>
+		<h1>Edit student</h1>
 		<div class="row col-md-7 table-responsive table-hover table-striped">
-			<form action="#" th:action="@{/lesson_update}" th:object="${lesson}"
-				method="post">
+            <form action="#" th:action="@{/students}" th:object="${student}"
+                th:method="put">
+                <input type="hidden" name="_method" value="put" />
 
 				<table class="table">
 					<tr>
@@ -27,47 +28,28 @@
 						<td><input type="text" th:field="*{id}" readonly="readonly" /></td>
 					</tr>
 					<tr>
-						<td>Classroom ID:</td>
-						<td><input type="text" th:field="*{classroom.id}" /></td>
+						<td>Student first name:</td>
+						<td><input type="text" th:field="*{firstName}" /></td>
 					</tr>
 					<tr>
-						<td>Classroom:</td>
-						<td><input type="text" th:field="*{classroom.name}"
-							readonly="readonly" /></td>
+						<td>Student last name:</td>
+						<td><input type="text" th:field="*{lastName}" /></td>
 					</tr>
 					<tr>
-						<td>Teacher ID:</td>
-						<td><input type="text" th:field="*{teacher.id}" /></td>
-					</tr>
-					<tr>
-						<td>Teacher:</td>
-						<td><input type="text" th:field="*{teacher.firstName}"
-							readonly="readonly" /></td>
-					</tr>
-					<tr>
-						<td>Subject ID:</td>
-						<td><input type="text" th:field="*{subject.id}" /></td>
-					</tr>
-					<tr>
-						<td>Subject:</td>
-						<td><input type="text" th:field="*{subject.name}"
-							readonly="readonly" /></td>
+						<td>Student age:</td>
+						<td><input type="text" th:field="*{age}" /></td>
 					</tr>
 					<tr>
 						<td>Group ID:</td>
 						<td><input type="text" th:field="*{group.id}" /></td>
 					</tr>
 					<tr>
-						<td>Group:</td>
+						<td>Group Name:</td>
 						<td><input type="text" th:field="*{group.name}"
 							readonly="readonly" /></td>
 					</tr>
 					<tr>
-						<td>Start time:</td>
-						<td><input type="datetime-local" th:field="*{startTime}" /></td>
-					</tr>
-					<tr>
-						<td colspan="2"><button type="submit">Save</button></td>
+						<td colspan="2"><button type="submit" class="btn btn-primary">Save</button></td>
 					</tr>
 				</table>
 			</form>

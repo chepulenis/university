@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>University Application</title>
 <meta charset="utf-8" />
@@ -16,29 +15,25 @@
 </head>
 <body>
 	<div class="container" align="center">
-		<h2>Classrooms records</h2>
+		<h1>Enter New Group</h1>
 		<div class="row col-md-7 table-responsive table-hover table-striped">
-			<a href="/new_classroom">Enter New Classroom</a> <br /> <br />
-			<table class="table">
-				<thead>
+			<form action="#" th:action="@{/groups}" th:object="${group}"
+				method="post">
+
+				<table class="table">
 					<tr>
-						<th>ID</th>
-						<th>Name</th>
-						<th>Size</th>
+						<td>ID:</td>
+						<td><input type="text" th:field="*{id}" /></td>
 					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="classroom : ${classrooms}">
-						<td th:text="${classroom.id}">ID</td>
-						<td th:text="${classroom.name}">Name</td>
-						<td th:text="${classroom.size}">Size</td>
-						<td><a th:href="@{'/classroom_edit/' + ${classroom.id}}">Edit</a></td>
-						<td><a th:href="@{'/classroom_delete/' + ${classroom.id}}">Delete</a></td>
+					<tr>
+						<td>Group name:</td>
+						<td><input type="text" th:field="*{name}" /></td>
 					</tr>
-				</tbody>
-			</table>
-			<br> <a href="/">back</a>
+					<tr>
+						<td colspan="2"><button type="submit" class="btn btn-primary">Save</button></td>
+					</tr>
+				</table>
+			</form>
 		</div>
 	</div>
 </body>
-</html>
