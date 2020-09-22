@@ -11,21 +11,24 @@
     <groupId>com.university</groupId>
     <artifactId>university</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
 
     <properties>
-        <postgres.version>9.1-901.jdbc4</postgres.version>
+        <postgres.version>42.2.16</postgres.version>
         <junit.version>5.5.2</junit.version>
-        <mockito.version>1.10.19</mockito.version>
         <maven.version>3.8.0</maven.version>
         <maven.release>12</maven.release>
         <surefire.version>2.22.2</surefire.version>
         <maven.compiler.target>1.10</maven.compiler.target>
         <maven.compiler.source>1.10</maven.compiler.source>
+        <java.version>1.8</java.version>
+        <tomcat.version>9.0.38</tomcat.version>
+        <cglib.version>2.2.2</cglib.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>postgresql</groupId>
+            <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${postgres.version}</version>
         </dependency>
@@ -65,15 +68,43 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>${mockito.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web-services</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>2.3.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
     </dependencies>
 
     <build>

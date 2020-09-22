@@ -1,43 +1,44 @@
 package com.foxminded.config;
 
+import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-@ComponentScan({ "com.foxminded.dao", "com.foxminded.service" })
+@ComponentScan({ "com.foxminded.dao", "com.foxminded.service", "com.foxminded.controller" })
 @PropertySource("classpath:application.properties")
+
 public class SpringJdbcConfig {
 
-    @Autowired
-    Environment environment;
-    private final String URL = "url";
-    private final String USER = "dbuser";
-    private final String DRIVER = "driver";
-    private final String PASSWORD = "dbpassword";
-
     @Bean
-    DataSource dataSource() {
-        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-        driverManagerDataSource.setUrl(environment.getProperty(URL));
-        driverManagerDataSource.setUsername(environment.getProperty(USER));
-        driverManagerDataSource.setPassword(environment.getProperty(PASSWORD));
-        driverManagerDataSource.setDriverClassName(environment.getProperty(DRIVER));
-        return driverManagerDataSource;
+    public ViewResolver getViewResolver(){
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setPrefix("WEB-INF/templates/");
+        resolver.setSuffix(".html");
+        return resolver;
     }
 
     @Bean
-    public JdbcTemplate jdbcTemplate() {
+    public DataSource dataSource() {
+        JndiDataSourceLookup dataSourceLookup = new JndiDataSourceLookup();
+        DataSource dataSource = dataSourceLookup.getDataSource("java:comp/env/jdbc/university");
+        return dataSource;
+    }
+
+
+    @Bean
+    public JdbcTemplate jdbcTemplate() throws NamingException {
         var template = new JdbcTemplate();
         template.setDataSource(dataSource());
         return template;
     }
-    
+
 }
