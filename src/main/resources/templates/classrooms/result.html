@@ -18,19 +18,8 @@
 </head>
 <body>
 	<div class="container" align="center">
-		<h2>Classrooms records</h2>
-		<br>
+	<h1>Search result:</h1>
 		<div class="row col-md-7 table-responsive table-hover table-striped">
-			<a href="/classrooms/new-classroom" class="btn btn-light">Enter New
-				Classroom</a> <br> <br>
-			<form action="#"
-                                th:action="@{classrooms/classroom}"
-                                th:method="get">
-				<input type="text" name="id" /> 
-				<input type="submit"
-					value="Find by id" class="btn btn-primary" />
-			</form>
-			<br>
 
 			<table class="table">
 				<thead>
@@ -41,30 +30,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="classroom : ${classrooms}">
+					<tr>
 						<td th:text="${classroom.id}">ID</td>
 						<td th:text="${classroom.name}">Name</td>
 						<td th:text="${classroom.size}">Size</td>
-						<td>
-							<form action="#"
-								th:action="@{'/classrooms/{id}'(id=${classroom.id})}"
-								th:method="put">
-								<input type="hidden" name="_method" value="put" />
-								<button type="submit" class="btn btn-success">Edit</button>
-							</form>
-						</td>
-						<td>
-							<form action="#"
-								th:action="@{'/classrooms/{id}'(id=${classroom.id})}"
-								th:method="delete">
-								<input type="hidden" name="_method" value="delete" />
-								<button type="submit" class="btn btn-danger">Delete</button>
-							</form>
-						</td>
 					</tr>
 				</tbody>
 			</table>
-			<a href="redirect:">backk</a>
+			<a href="./">back</a>
 		</div>
 	</div>
 </body>

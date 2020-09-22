@@ -21,33 +21,33 @@ import com.foxminded.mapper.TeacherMapper;
 @Component
 public class LessonDao {
 
-    private final String SQL_FIND_LESSON_CLASSROOM = "select * from classrooms inner join lessons "
+    private static final String SQL_FIND_LESSON_CLASSROOM = "select * from classrooms inner join lessons "
             + "on classrooms.id = lessons.classroom_id where lessons.id = ?";
-    private final String SQL_FIND_LESSON_TEACHER = "select * from teachers inner join lessons "
+    private static final String SQL_FIND_LESSON_TEACHER = "select * from teachers inner join lessons "
             + "on teachers.id = lessons.teacher_id where lessons.id = ?";
-    private final String SQL_FIND_LESSON_SUBJECT = "select * from subjects inner join lessons "
+    private static final String SQL_FIND_LESSON_SUBJECT = "select * from subjects inner join lessons "
             + "on subjects.id = lessons.subject_id where lessons.id = ?";
-    private final String SQL_FIND_LESSON_GROUP = "select * from groups inner join lessons "
+    private static final String SQL_FIND_LESSON_GROUP = "select * from groups inner join lessons "
             + "on groups.id = lessons.group_id where lessons.id = ?";
 
-    private final String SQL_LESSONS_JOIN = "select lessons.id as lesson_id, classrooms.id as classroom_id, classrooms.name as classroom_name, classrooms.size as classroom_size, "
+    private static final String SQL_LESSONS_JOIN = "select lessons.id as lesson_id, classrooms.id as classroom_id, classrooms.name as classroom_name, classrooms.size as classroom_size, "
             + "teachers.id as teacher_id, teachers.first_name as teacher_first_name, teachers.last_name as teacher_last_name, teachers.age as teacher_age,"
             + " subjects.id as subject_id, subjects.name as subject_name, groups.id as group_id, groups.name as group_name, lessons.start_time "
             + "from lessons inner join classrooms on lessons.classroom_id = classrooms.id inner join teachers on lessons.teacher_id = teachers.id "
             + " inner join subjects on lessons.subject_id = subjects.id inner join groups on lessons.group_id = groups.id ";
 
-    private final String SQL_FIND_ALL_LESSONS = SQL_LESSONS_JOIN + "order by lessons.id";
-    private final String SQL_FIND_LESSON = SQL_LESSONS_JOIN + "where lessons.id = ?";
-    private final String SQL_INSERT_LESSON = "insert into lessons(id, classroom_id, teacher_id, subject_id, group_id, start_time) values(?,?,?,?,?,?)";
-    private final String SQL_UPDATE_LESSON = "update lessons set classroom_id = ?, teacher_id= ?, subject_id = ?, group_id= ?, start_time = ? where id = ?";
-    private final String SQL_DELETE_LESSON = "delete from lessons where id = ?";
-    private final String SQL_FIND_DAILY_LESSONS_FOR_GROUP = SQL_LESSONS_JOIN
+    private static final String SQL_FIND_ALL_LESSONS = SQL_LESSONS_JOIN + "order by lessons.id";
+    private static final String SQL_FIND_LESSON = SQL_LESSONS_JOIN + "where lessons.id = ?";
+    private static final String SQL_INSERT_LESSON = "insert into lessons(id, classroom_id, teacher_id, subject_id, group_id, start_time) values(?,?,?,?,?,?)";
+    private static final String SQL_UPDATE_LESSON = "update lessons set classroom_id = ?, teacher_id= ?, subject_id = ?, group_id= ?, start_time = ? where id = ?";
+    private static final String SQL_DELETE_LESSON = "delete from lessons where id = ?";
+    private static final String SQL_FIND_DAILY_LESSONS_FOR_GROUP = SQL_LESSONS_JOIN
             + "where lessons.group_id = ? and lessons.start_time between ?::timestamp and (?::timestamp + interval '23:59' hour)";
-    private final String SQL_FIND_MONTHLY_LESSONS_FOR_GROUP = SQL_LESSONS_JOIN
+    private static final String SQL_FIND_MONTHLY_LESSONS_FOR_GROUP = SQL_LESSONS_JOIN
             + "where lessons.group_id = ? and extract (year from lessons.start_time) = ? and extract (month from lessons.start_time) = ?";
-    private final String SQL_FIND_DAILY_LESSONS_FOR_TEACHER = SQL_LESSONS_JOIN
+    private static final String SQL_FIND_DAILY_LESSONS_FOR_TEACHER = SQL_LESSONS_JOIN
             + "where lessons.teacher_id = ? and lessons.start_time between ?::timestamp and (?::timestamp + interval '23:59' hour)";
-    private final String SQL_FIND_MONTHLY_LESSONS_FOR_TEACHER = SQL_LESSONS_JOIN
+    private static final String SQL_FIND_MONTHLY_LESSONS_FOR_TEACHER = SQL_LESSONS_JOIN
             + "where lessons.teacher_id = ? and extract (year from lessons.start_time) = ? and extract (month from lessons.start_time) = ?";
 
     private JdbcTemplate jdbcTemplate;

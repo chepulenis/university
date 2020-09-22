@@ -16,15 +16,16 @@
 </head>
 <body>
 	<div class="container" align="center">
-		<h1>Group timetable finder</h1>
+		<h1>Teacher timetable finder</h1>
 		<div class="row col-md-7 table-responsive table-hover table-striped">
-			<form action="#" th:action="@{/group-timetable-result}" method="post">
+			<form action="#" th:action="@{/teacher-timetable-result}"
+				method="post">
 				<h2>Daily:</h2>
 				<table class="table">
 					<tbody>
 						<tr>
-							<td>Group ID:</td>
-							<td><input type="text" name="groupId" /></td>
+							<td>Teacher ID:</td>
+							<td><input type="text" name="teacherId" /></td>
 						</tr>
 						<tr>
 							<td>Day:</td>
@@ -39,13 +40,14 @@
 
 			<br /> <br />
 
-			<form action="#" th:action="@{/group-timetable-result}" method="post">
+			<form action="#" th:action="@{/teacher-timetable-result}"
+				method="post">
 				<h2>Monthly:</h2>
 				<table class="table">
 					<tbody>
 						<tr>
-							<td>Group ID:</td>
-							<td><input type="text" name="groupId" /></td>
+							<td>Teacher ID:</td>
+							<td><input type="text" name="teacherId" /></td>
 						</tr>
 						<tr>
 							<td>Month:</td>
@@ -57,7 +59,7 @@
 					</tbody>
 				</table>
 			</form>
-			<a href="/">back</a>
+        <a href="./">back</a>
 		</div>
 	</div>
 </body>

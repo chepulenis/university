@@ -16,17 +16,10 @@
 </head>
 <body>
 	<div class="container" align="center">
-		<h1>Lessons records</h1>
-		<div class="row col-md-12 table-responsive table-hover table-striped">
-			<a href="/lessons/new-lesson" class="btn btn-light">Enter New Lesson</a> <br> <br>
-			<form action="#"
-                                th:action="@{lessons/lesson}"
-                                th:method="get">
-                <input type="text" name="id" /> 
-                <input type="submit"
-                    value="Find by id" class="btn btn-primary" />
-            </form>
-            <br>
+		<h1>Lessons found:</h1>
+		<div class="row col-md-10 table-responsive table-hover table-striped">
+			<br />
+			<br />
 			<table class="table">
 				<thead>
 					<tr>
@@ -49,26 +42,10 @@
 						<td
 							th:text="${#dates.format(lesson.startTime, 'dd MMMM yyyy HH:mm')}">Start
 							time</td>
-						<td>
-                            <form action="#"
-                                th:action="@{'/lessons/{id}'(id=${lesson.id})}"
-                                th:method="put">
-                                <input type="hidden" name="_method" value="put" />
-                                <button type="submit" class="btn btn-success">Edit</button>
-                            </form>
-                        </td>
-                        <td>
-                            <form action="#"
-                                th:action="@{'/lessons/{id}'(id=${lesson.id})}"
-                                th:method="delete">
-                                <input type="hidden" name="_method" value="delete" />
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>
 					</tr>
 				</tbody>
 			</table>
-			<a href="/">back</a>
+        <a href="./">back</a>
 		</div>
 	</div>
 </body>

@@ -14,12 +14,12 @@ import com.foxminded.mapper.TeacherMapper;
 @Component
 public class TeacherDao {
 
-    private final String SQL_FIND_TEACHER = "select * from teachers where id = ?";
-    private final String SQL_DELETE_TEACHER = "delete from teachers where id = ?";
-    private final String SQL_UPDATE_TEACHER = "update teachers set first_name = ?, last_name = ?, age  = ? where id = ?";
-    private final String SQL_GET_ALL_TEACHERS = "select * from teachers order by id";
-    private final String SQL_INSERT_TEACHER = "insert into teachers(id, first_name, last_name, age) values(?,?,?,?)";
-    private final String SQL_GET_TEACHER_SUBJECTS = "select * from subjects inner join teachers_subjects "
+    private static final String SQL_FIND_TEACHER = "select * from teachers where id = ?";
+    private static final String SQL_DELETE_TEACHER = "delete from teachers where id = ?";
+    private static final String SQL_UPDATE_TEACHER = "update teachers set first_name = ?, last_name = ?, age  = ? where id = ?";
+    private static final String SQL_GET_ALL_TEACHERS = "select * from teachers order by id";
+    private static final String SQL_INSERT_TEACHER = "insert into teachers(id, first_name, last_name, age) values(?,?,?,?)";
+    private static final String SQL_GET_TEACHER_SUBJECTS = "select * from subjects inner join teachers_subjects "
             + "on subjects.id = teachers_subjects.subject_id where teachers_subjects.teacher_id = ?";
     
     private JdbcTemplate jdbcTemplate;

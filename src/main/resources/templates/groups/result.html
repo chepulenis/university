@@ -18,35 +18,24 @@
 </head>
 <body>
 	<div class="container" align="center">
-		<h1>Search result:</h1>
+	<h1>Search result:</h1>
 		<div class="row col-md-7 table-responsive table-hover table-striped">
 
 			<table class="table">
 				<thead>
 					<tr>
-                        <th>ID</th>
-                        <th>Classroom</th>
-                        <th>Teacher</th>
-                        <th>Subject</th>
-                        <th>Group</th>
-                        <th>Start Time</th>
+						<th>ID</th>
+						<th>Name</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td th:text="${lesson.id}">ID</td>
-						<td th:text="${lesson.classroom.name}">Classroom</td>
-						<td
-							th:text="${lesson.teacher.firstName + ' ' + lesson.teacher.lastName}">Teacher</td>
-						<td th:text="${lesson.subject.name}">Subject</td>
-						<td th:text="${lesson.group.name}">Group</td>
-						<td
-							th:text="${#dates.format(lesson.startTime, 'dd MMMM yyyy HH:mm')}">Start
-							time</td>
+						<td th:text="${group.id}">ID</td>
+						<td th:text="${group.Name}">Group Name</td>
 					</tr>
 				</tbody>
 			</table>
-			<a href="/">back</a>
+			<a href="./">back</a>
 		</div>
 	</div>
 </body>

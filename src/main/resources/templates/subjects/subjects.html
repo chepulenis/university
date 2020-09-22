@@ -16,34 +16,31 @@
 </head>
 <body>
 	<div class="container" align="center">
-		<h1>Students records</h1>
+		<h1>Subjects records</h1>
 		<div class="row col-md-7 table-responsive table-hover table-striped">
-			<a href="/students/new-student" class="btn btn-light">Enter New Student</a> <br> <br>
-			<form action="#" th:action="@{students/student}" th:method="get">
-				<input type="text" name="id" /> <input type="submit"
-					value="Find by id" class="btn btn-primary" />
-			</form>
-			<br>
+			<a href="./subjects/new-subject" class="btn btn-light">Enter New Subject</a> <br> <br>
+			<form action="#"
+                                th:action="@{subjects/subject}"
+                                th:method="get">
+                <input type="text" name="id" /> 
+                <input type="submit"
+                    value="Find by id" class="btn btn-primary" />
+            </form>
+            <br>
 			<table class="table">
 				<thead>
 					<tr>
 						<th>ID</th>
-						<th>First Name</th>
-						<th>Last Name</th>
-						<th>Age</th>
-						<th>Group Name</th>
+						<th>Name</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="student : ${students}">
-						<td th:text="${student.id}">ID</td>
-						<td th:text="${student.firstName}">First Name</td>
-						<td th:text="${student.lastName}">Last Name</td>
-						<td th:text="${student.age}">Age</td>
-						<td th:text="${student.group.name}">Group Name</td>
-						<td>
+					<tr th:each="subject : ${subjects}">
+						<td th:text="${subject.id}">ID</td>
+						<td th:text="${subject.name}">Name</td>
+						                      <td>
                             <form action="#"
-                                th:action="@{'/students/{id}'(id=${student.id})}"
+                                th:action="@{'/subjects/{id}'(id=${subject.id})}"
                                 th:method="put">
                                 <input type="hidden" name="_method" value="put" />
                                 <button type="submit" class="btn btn-success">Edit</button>
@@ -51,7 +48,7 @@
                         </td>
                         <td>
                             <form action="#"
-                                th:action="@{'/students/{id}'(id=${student.id})}"
+                                th:action="@{'/subjects/{id}'(id=${subject.id})}"
                                 th:method="delete">
                                 <input type="hidden" name="_method" value="delete" />
                                 <button type="submit" class="btn btn-danger">Delete</button>
@@ -60,7 +57,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<br /> <br /> <a href="/">back</a>
+			<a href="./">back</a>
 		</div>
 	</div>
 </body>

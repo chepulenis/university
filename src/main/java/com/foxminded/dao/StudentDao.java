@@ -14,14 +14,14 @@ import com.foxminded.mapper.StudentMapper;
 @Component
 public class StudentDao {
 
-    private final String SQL_FIND_STUDENT = "select students.id as student_id, first_name, last_name, age, group_id, groups.name "
+    private static final String SQL_FIND_STUDENT = "select students.id as student_id, first_name, last_name, age, group_id, groups.name "
             + "from students inner join groups on students.group_id = groups.id where students.id = ?";
-    private final String SQL_DELETE_STUDENT = "delete from students where id = ?";
-    private final String SQL_UPDATE_STUDENT = "update students set first_name = ?, last_name = ?, age  = ?, group_id = ? where id = ?";
-    private final String SQL_GET_ALL_STUDENTS = "select students.id as student_id, first_name, last_name, age, group_id, groups.name "
+    private static final String SQL_DELETE_STUDENT = "delete from students where id = ?";
+    private static final String SQL_UPDATE_STUDENT = "update students set first_name = ?, last_name = ?, age  = ?, group_id = ? where id = ?";
+    private static final String SQL_GET_ALL_STUDENTS = "select students.id as student_id, first_name, last_name, age, group_id, groups.name "
             + "from students inner join groups on students.group_id = groups.id order by students.id";
-    private final String SQL_INSERT_STUDENT = "insert into students(id, first_name, last_name, age, group_id) values(?,?,?,?,?)";
-    private final String SQL_GET_STUDENT_GROUP = "select * from groups inner join students "
+    private static final String SQL_INSERT_STUDENT = "insert into students(id, first_name, last_name, age, group_id) values(?,?,?,?,?)";
+    private static final String SQL_GET_STUDENT_GROUP = "select * from groups inner join students "
             + "on groups.id = students.group_id where students.id = ?";
 
     private JdbcTemplate jdbcTemplate;
