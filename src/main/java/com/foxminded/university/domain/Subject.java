@@ -1,9 +1,24 @@
 package com.foxminded.university.domain;
 
+import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="subjects")
 public class Subject {
     
+    @Id
+    @GeneratedValue
     private int id;
+    
+    @ManyToMany(mappedBy = "teacherSubjects")
+    private Set<Teacher> subjectTeachers;
+    
     private String name;
     
     public Subject() {

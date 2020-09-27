@@ -1,7 +1,21 @@
 package com.foxminded.university.domain;
 
-public class Teacher extends Person{
-    
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+
+@Entity
+@Table(name = "teachers")
+public class Teacher extends Person {
+
+    @ManyToMany
+    @JoinTable(name = "teachers_subjects", joinColumns = @JoinColumn(name = "teachers_id"), inverseJoinColumns = @JoinColumn(name = "subjects_id"))
+    Set<Subject> teacherSubjects;
+
     public Teacher() {
     }
 
@@ -27,8 +41,8 @@ public class Teacher extends Person{
 
     @Override
     public String toString() {
-        return "Teacher [id=" + super.getId() + ", first_name=" + super.getFirstName() + ", last_name=" + super.getLastName() + "]";
+        return "Teacher [id=" + super.getId() + ", first_name=" + super.getFirstName() + ", last_name="
+                + super.getLastName() + "]";
     }
 
-    
 }

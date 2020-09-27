@@ -2,14 +2,33 @@ package com.foxminded.university.domain;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
+@Entity
+@Table(name="lessons")
 public class Lesson {
     
+    @Id
+    @GeneratedValue
     private int id;
+    @OneToOne
+    @JoinColumn(name = "classroom_id", referencedColumnName = "id")
     private Classroom classroom;
+    @OneToOne
+    @JoinColumn(name = "teacher_id", referencedColumnName = "id")
     private Teacher teacher;
+    @OneToOne
+    @JoinColumn(name = "subject_id", referencedColumnName = "id")
     private Subject subject;
+    @OneToOne
+    @JoinColumn(name = "group_id", referencedColumnName = "id")
     private Group group;
     
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")

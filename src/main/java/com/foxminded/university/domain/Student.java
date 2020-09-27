@@ -1,7 +1,16 @@
 package com.foxminded.university.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="students")
 public class Student extends Person{
 
+    @ManyToOne
+    @JoinColumn(name="students_id", nullable=false)
     private Group group;
 
     public Student() {

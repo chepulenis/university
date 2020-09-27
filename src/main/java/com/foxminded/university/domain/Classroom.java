@@ -1,7 +1,16 @@
 package com.foxminded.university.domain;
 
-public class Classroom {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="classrooms")
+public class Classroom {
+    
+    @Id
+    @GeneratedValue
     private int id;
     private String name;
     private int size;

@@ -15,10 +15,10 @@ import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
 @ComponentScan({ "com.foxminded.dao", "com.foxminded.service", "com.foxminded.controller" })
 @PropertySource("classpath:application.properties")
 public class SpringJdbcConfig {
-    
+
     @Value("${spring.datasource.url}")
     String datatSourceUrl;
-    
+
     @Bean
     public DataSource dataSource() {
         JndiDataSourceLookup dataSourceLookup = new JndiDataSourceLookup();
@@ -32,5 +32,5 @@ public class SpringJdbcConfig {
         template.setDataSource(dataSource());
         return template;
     }
-    
+
 }
