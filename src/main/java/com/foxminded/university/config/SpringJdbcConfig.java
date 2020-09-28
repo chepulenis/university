@@ -25,7 +25,7 @@ public class SpringJdbcConfig {
         DataSource dataSource = dataSourceLookup.getDataSource(datatSourceUrl);
         return dataSource;
     }
-
+    
     @Bean
     public JdbcTemplate jdbcTemplate() throws NamingException {
         var template = new JdbcTemplate();

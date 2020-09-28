@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class Student extends Person{
 
     @ManyToOne
-    @JoinColumn(name="students_id", nullable=false)
+    @JoinColumn(name="group_id")
     private Group group;
 
     public Student() {

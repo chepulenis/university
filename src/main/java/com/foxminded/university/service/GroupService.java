@@ -7,48 +7,41 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.foxminded.university.dao.GroupDao;
 import com.foxminded.university.domain.Group;
-import com.foxminded.university.domain.Student;
+import com.foxminded.university.repository.GroupRepositoryImplementation;
 
 @Service
 public class GroupService {
     
     @Autowired
-    private GroupDao dao;
+    private GroupRepositoryImplementation repository;
     private static final Logger logger = LoggerFactory.getLogger(GroupService.class);
     
     public Group findGroupById(int id) {
-        Group group = dao.findGroupById(id);
+        Group group = repository.findGroupById(id);
         logger.info("Group {} by id {} has been found", group, id);
         return group;
     }
     
     public List<Group> findAllGroups() {
-        List<Group> groups = dao.findAllGroups();
+        List<Group> groups = repository.findAllGroups();
         logger.info("All groups {} have been found", groups);
-        return dao.findAllGroups();
+        return repository.findAllGroups();
     }
     
-    public boolean deleteGroup(int id) {
+    public void deleteGroup(int id) {
         logger.info("Group {} deleted", id);
-        return dao.deleteGroup(id);
+        repository.deleteGroup(id);
     }
     
-    public boolean updateGroup(Group group) {
+    public void updateGroup(Group group) {
         logger.info("Group {} updated", group);
-        return dao.updateGroup(group);
+        repository.updateGroup(group);
     }
     
-    public boolean createGroup(Group group) {
+    public void createGroup(Group group) {
         logger.info("Group {} created", group);
-        return dao.createGroup(group);
+        repository.createGroup(group);
     }
     
-    public List<Student> findStudentsGroup(Group group){
-        List<Student> students = dao.findStudentsGroup(group);
-        logger.info("Students {} for group {} have been found", students, group);
-        return students;
-    }
-
 }

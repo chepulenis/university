@@ -3,7 +3,6 @@ package com.foxminded.university.domain;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -16,7 +15,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Lesson {
     
     @Id
-    @GeneratedValue
     private int id;
     @OneToOne
     @JoinColumn(name = "classroom_id", referencedColumnName = "id")

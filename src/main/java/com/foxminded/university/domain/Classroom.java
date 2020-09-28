@@ -1,7 +1,6 @@
 package com.foxminded.university.domain;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,7 +9,6 @@ import javax.persistence.Table;
 public class Classroom {
     
     @Id
-    @GeneratedValue
     private int id;
     private String name;
     private int size;

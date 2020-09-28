@@ -3,7 +3,6 @@ package com.foxminded.university.domain;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -13,7 +12,6 @@ import javax.persistence.Table;
 public class Subject {
     
     @Id
-    @GeneratedValue
     private int id;
     
     @ManyToMany(mappedBy = "teacherSubjects")

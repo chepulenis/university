@@ -1,6 +1,5 @@
 package com.foxminded.university.domain;
 
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
@@ -8,7 +7,6 @@ import javax.persistence.MappedSuperclass;
 public class Person {
 
     @Id
-    @GeneratedValue
     private int id;
     private String firstName;
     private String lastName;
