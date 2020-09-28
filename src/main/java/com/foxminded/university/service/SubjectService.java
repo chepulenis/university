@@ -8,40 +8,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.foxminded.university.domain.Subject;
-import com.foxminded.university.repository.SubjectRepositoryImplementation;
+import com.foxminded.university.repository.SubjectRepository;
 
 @Service
 public class SubjectService {
 
     @Autowired
-    private SubjectRepositoryImplementation repository;
+    private SubjectRepository repository;
     private static final Logger logger = LoggerFactory.getLogger(SubjectService.class);
     
     public Subject findSubjectById(int id) {
-        Subject subject = repository.findSubjectById(id); 
+        Subject subject = repository.findById(id).get(); 
         logger.info("Subject {} by id {} has been found", subject, id);
         return subject;
     }
 
     public List<Subject> findAllSubjects() {
-        List<Subject> subjects = repository.findAllSubjects();
+        List<Subject> subjects = repository.findAll();
         logger.info("All subjects {} have been found", subjects);
         return subjects;
     }
     
     public void deleteSubject(int id) {
         logger.info("Subject {} deleted", id);
-        repository.deleteSubject(id);
+        repository.deleteById(id);
     }
     
     public void updateSubject(Subject subject) {
         logger.info("Subject {} updated", subject);
-        repository.updateSubject(subject);
+        repository.save(subject);
     }
     
     public void createSubject(Subject subject) {
         logger.info("Subject {} created", subject);
-        repository.createSubject(subject);
+        repository.save(subject);
     }
     
 }

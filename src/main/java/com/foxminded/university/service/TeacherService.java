@@ -8,40 +8,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.foxminded.university.domain.Teacher;
-import com.foxminded.university.repository.TeacherRepositoryImplementation;
+import com.foxminded.university.repository.TeacherRepository;
 
 @Service
 public class TeacherService {
     
     @Autowired
-    private TeacherRepositoryImplementation repository;
+    private TeacherRepository repository;
     private static final Logger logger = LoggerFactory.getLogger(TeacherService.class);
     
     public Teacher findTeacherById(int id) {
-        Teacher teacher = repository.findTeacherById(id);;
+        Teacher teacher = repository.findById(id).get();
         logger.info("Teacher {} by id {} has been found", teacher, id);
         return teacher;
     }
     
     public List<Teacher> findAllTeachers(){
-        List <Teacher> teachers = repository.findAllTeachers();
+        List <Teacher> teachers = repository.findAll();
         logger.info("All teachers {} have been found", teachers);
         return teachers;
     }
     
     public void deleteTeacher(int id) {
         logger.info("Teacher {} deleted", id);
-        repository.deleteTeacher(id);
+        repository.deleteById(id);
     }
     
     public void updateTeacher(Teacher teacher) {
         logger.info("Teacher {} updated", teacher);
-        repository.updateTeacher(teacher);
+        repository.save(teacher);
     }
     
     public void createTeacher(Teacher teacher) {
         logger.info("Teacher {} created", teacher);
-        repository.createTeacher(teacher);
+        repository.save(teacher);
     }
     
 }

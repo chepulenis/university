@@ -8,40 +8,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.foxminded.university.domain.Group;
-import com.foxminded.university.repository.GroupRepositoryImplementation;
+import com.foxminded.university.repository.GroupRepository;
 
 @Service
 public class GroupService {
     
     @Autowired
-    private GroupRepositoryImplementation repository;
+    private GroupRepository repository;
     private static final Logger logger = LoggerFactory.getLogger(GroupService.class);
     
     public Group findGroupById(int id) {
-        Group group = repository.findGroupById(id);
+        Group group = repository.findById(id).get();
         logger.info("Group {} by id {} has been found", group, id);
         return group;
     }
     
     public List<Group> findAllGroups() {
-        List<Group> groups = repository.findAllGroups();
+        List<Group> groups = repository.findAll();
         logger.info("All groups {} have been found", groups);
-        return repository.findAllGroups();
+        return groups;
     }
     
     public void deleteGroup(int id) {
         logger.info("Group {} deleted", id);
-        repository.deleteGroup(id);
+        repository.deleteById(id);
     }
     
     public void updateGroup(Group group) {
         logger.info("Group {} updated", group);
-        repository.updateGroup(group);
+        repository.save(group);
     }
     
     public void createGroup(Group group) {
         logger.info("Group {} created", group);
-        repository.createGroup(group);
+        repository.save(group);
     }
     
 }

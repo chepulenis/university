@@ -8,69 +8,42 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.foxminded.university.domain.Classroom;
-import com.foxminded.university.domain.Group;
 import com.foxminded.university.domain.Lesson;
-import com.foxminded.university.domain.Subject;
-import com.foxminded.university.domain.Teacher;
-import com.foxminded.university.repository.LessonRepositoryImplementation;
+import com.foxminded.university.repository.LessonRepository;
 
 @Service
 public class LessonService {
 
     @Autowired
-    private LessonRepositoryImplementation repository;
+    private LessonRepository repository;
+    
     private static final Logger logger = LoggerFactory.getLogger(LessonService.class);
 
     public Lesson findLessonById(int id) {
-        Lesson lesson = repository.findLessonById(id);
+        Lesson lesson = repository.findById(id).get();
         logger.info("Lesson {} by id {} has been found", lesson, id);
         return lesson;
     }
 
-    public Classroom findClassroom(Lesson lesson) {
-        Classroom classroom = repository.findClassroom(lesson);
-        logger.info("Classroom {} for lesson {} has been found", classroom, lesson);
-        return classroom;
-    }
-
-    public Teacher findTeacher(Lesson lesson) {
-        Teacher teacher = repository.findTeacher(lesson);
-        logger.info("Teacher {} for lesson {} has been found", teacher, lesson);
-        return teacher;
-    }
-
-    public Subject findSubject(Lesson lesson) {
-        Subject subject = repository.findSubject(lesson);
-        logger.info("Subject {} for lesson {} has been found", subject, lesson);
-        return subject;
-    }
-
-    public Group findGroup(Lesson lesson) {
-        Group group = repository.findGroup(lesson);
-        logger.info("Group {} for lesson {} has been found", group, lesson);
-        return repository.findGroup(lesson);
-    }
-
     public List<Lesson> findAllLessons() {
-        List<Lesson> lessons = repository.findAllLessons();
+        List<Lesson> lessons = repository.findAll();
         logger.info("All lessons {} have been found", lessons);
         return lessons;
     }
 
     public void createLesson(Lesson lesson) {
         logger.info("Lesson {} created", lesson);
-        repository.createLesson(lesson);
+        repository.save(lesson);
     }
 
     public void updateLesson(Lesson lesson) {
         logger.info("Lesson {} updated", lesson);
-        repository.updateLesson(lesson);
+        repository.save(lesson);
     }
 
     public void deleteLesson(int id) {
         logger.info("Lesson {} deleted", id);
-        repository.deleteLesson(id);
+        repository.deleteById(id);
     }
 
     public List<Lesson> findGroupDailyLessons(int groupId, Date date) {

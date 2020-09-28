@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -30,6 +32,7 @@ public class Lesson {
     private Group group;
     
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date startTime;
     
     public Lesson(int id, Classroom classroom, Teacher teacher, Subject subject, Group group, Date startTime) {
