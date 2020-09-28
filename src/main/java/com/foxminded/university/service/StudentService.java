@@ -13,9 +13,10 @@ import com.foxminded.university.repository.StudentRepository;
 @Service
 public class StudentService {
 
+    private static final Logger logger = LoggerFactory.getLogger(StudentService.class);
+    
     @Autowired
     private StudentRepository repository;
-    private static final Logger logger = LoggerFactory.getLogger(StudentService.class);
 
     public Student findStudentById(int id) {
         Student student = repository.findById(id).get();

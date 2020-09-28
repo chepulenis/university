@@ -13,9 +13,11 @@ import com.foxminded.university.repository.TeacherRepository;
 @Service
 public class TeacherService {
     
+    private static final Logger logger = LoggerFactory.getLogger(TeacherService.class);
+    
     @Autowired
     private TeacherRepository repository;
-    private static final Logger logger = LoggerFactory.getLogger(TeacherService.class);
+    
     
     public Teacher findTeacherById(int id) {
         Teacher teacher = repository.findById(id).get();

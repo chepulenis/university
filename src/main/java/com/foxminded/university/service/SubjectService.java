@@ -13,9 +13,10 @@ import com.foxminded.university.repository.SubjectRepository;
 @Service
 public class SubjectService {
 
+    private static final Logger logger = LoggerFactory.getLogger(SubjectService.class);
+    
     @Autowired
     private SubjectRepository repository;
-    private static final Logger logger = LoggerFactory.getLogger(SubjectService.class);
     
     public Subject findSubjectById(int id) {
         Subject subject = repository.findById(id).get(); 

@@ -14,11 +14,11 @@ import com.foxminded.university.repository.LessonRepository;
 @Service
 public class LessonService {
 
+    private static final Logger logger = LoggerFactory.getLogger(LessonService.class);
+    
     @Autowired
     private LessonRepository repository;
     
-    private static final Logger logger = LoggerFactory.getLogger(LessonService.class);
-
     public Lesson findLessonById(int id) {
         Lesson lesson = repository.findById(id).get();
         logger.info("Lesson {} by id {} has been found", lesson, id);

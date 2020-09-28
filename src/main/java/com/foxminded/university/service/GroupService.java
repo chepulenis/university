@@ -12,10 +12,11 @@ import com.foxminded.university.repository.GroupRepository;
 
 @Service
 public class GroupService {
+
+    private static final Logger logger = LoggerFactory.getLogger(GroupService.class);
     
     @Autowired
     private GroupRepository repository;
-    private static final Logger logger = LoggerFactory.getLogger(GroupService.class);
     
     public Group findGroupById(int id) {
         Group group = repository.findById(id).get();

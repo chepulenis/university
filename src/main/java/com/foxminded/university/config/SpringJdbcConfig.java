@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
 
 @Configuration
-@ComponentScan({ "com.foxminded.dao", "com.foxminded.service", "com.foxminded.controller" })
+@ComponentScan({ "com.foxminded.repository", "com.foxminded.service", "com.foxminded.controller" })
 @PropertySource("classpath:application.properties")
 public class SpringJdbcConfig {
 
