@@ -1,4 +1,4 @@
-package com.foxminded.university.controller;
+package com.foxminded.university.validation;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
