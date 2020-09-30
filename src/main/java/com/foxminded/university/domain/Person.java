@@ -2,26 +2,36 @@ package com.foxminded.university.domain;
 
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 @MappedSuperclass
 public class Person {
 
     @Id
     private int id;
+
+    @Size(min = 2, max = 40)
     private String firstName;
-    private String lastName;
-    private int age;
     
+    @Size(min = 2, max = 40)
+    private String lastName;
+    
+    @Positive
+    @Digits(integer = 3, fraction = 0)
+    private int age;
+
     public Person() {
     }
-    
+
     public Person(int id, String firstName, String lastName, int age) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -29,23 +39,23 @@ public class Person {
     public void setId(int id) {
         this.id = id;
     }
-    
+
     public String getFirstName() {
         return firstName;
     }
-    
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-    
+
     public String getLastName() {
         return lastName;
     }
-    
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    
+
     public int getAge() {
         return age;
     }
@@ -96,5 +106,4 @@ public class Person {
         return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + "]";
     }
 
-    
 }

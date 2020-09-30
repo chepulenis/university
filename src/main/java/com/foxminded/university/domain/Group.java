@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="groups")
@@ -13,8 +15,10 @@ public class Group {
     
     @Id
     private int id;
+    @Pattern(regexp = "[a-zA-Z]{2}\\-\\d{2}")
     private String name; 
     
+    @Size(min = 0, max = 30)
     @OneToMany (mappedBy = "group")
     private List<Student> students;
     

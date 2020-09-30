@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="subjects")
@@ -17,6 +18,7 @@ public class Subject {
     @ManyToMany(mappedBy = "teacherSubjects")
     private Set<Teacher> subjectTeachers;
     
+    @Size(min = 2, max = 30)
     private String name;
     
     public Subject() {

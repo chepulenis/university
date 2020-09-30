@@ -18,15 +18,19 @@ public class Lesson {
     
     @Id
     private int id;
+    
     @OneToOne
     @JoinColumn(name = "classroom_id", referencedColumnName = "id")
     private Classroom classroom;
+    
     @OneToOne
     @JoinColumn(name = "teacher_id", referencedColumnName = "id")
     private Teacher teacher;
+    
     @OneToOne
     @JoinColumn(name = "subject_id", referencedColumnName = "id")
     private Subject subject;
+    
     @OneToOne
     @JoinColumn(name = "group_id", referencedColumnName = "id")
     private Group group;

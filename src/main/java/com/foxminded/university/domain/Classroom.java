@@ -3,6 +3,7 @@ package com.foxminded.university.domain;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="classrooms")
@@ -10,7 +11,9 @@ public class Classroom {
     
     @Id
     private int id;
+    @Size(min = 2, max = 40)
     private String name;
+    @Size(min = 5, max = 100)
     private int size;
     
     public Classroom() {
