@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 @Entity
 @Table(name="classrooms")
@@ -13,7 +15,8 @@ public class Classroom {
     private int id;
     @Size(min = 2, max = 40)
     private String name;
-    @Size(min = 5, max = 100)
+    @Min(10) 
+    @Max(80)
     private int size;
     
     public Classroom() {

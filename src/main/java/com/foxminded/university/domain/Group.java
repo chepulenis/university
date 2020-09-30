@@ -31,6 +31,12 @@ public class Group {
         this.name = name;
     }
     
+    public Group(int id, String name, List<Student> students) {
+        this.id = id;
+        this.name = name;
+        this.students = students;
+    }
+    
     public int getId() {
         return id;
     }
