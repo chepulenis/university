@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
 
 @Configuration
-@ComponentScan({ "com.foxminded.repository", "com.foxminded.service", "com.foxminded.controller" })
+@ComponentScan({ "com.foxminded.repository", "com.foxminded.service", "com.foxminded.controller", "com.foxminded.restcontroller" })
 @PropertySource("classpath:application.properties")
 public class SpringJdbcConfig {
 
@@ -25,7 +25,7 @@ public class SpringJdbcConfig {
       DataSource dataSource = dataSourceLookup.getDataSource(datatSourceUrl);
       return dataSource;
   }
-    
+  
     @Bean
     public JdbcTemplate jdbcTemplate() throws NamingException {
         var template = new JdbcTemplate();

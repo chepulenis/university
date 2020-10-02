@@ -23,14 +23,14 @@ public class ClassroomController {
     @Autowired
     private ClassroomService service;
     
-    @GetMapping("/classrooms")
-    public String viewClassroomPage(Model model) {
+    @GetMapping(value = "/classrooms", produces = "text/html")
+    public String getClassrooms(Model model) {
         List<Classroom> classrooms = service.findAllClassrooms();
         model.addAttribute("classrooms", classrooms);
         return "classrooms/classrooms";
     }
     
-    @GetMapping("/classrooms/{id}")
+    @GetMapping(value = "/classrooms/{id}", produces = "text/html")
     public ModelAndView getClassroomById(@RequestParam int id) {
         Classroom classroom = service.findClassroomById(id);
         ModelAndView mav = new ModelAndView("classrooms/result");
@@ -38,20 +38,20 @@ public class ClassroomController {
         return mav;
     }
 
-    @GetMapping("/classrooms/new-classroom")
+    @GetMapping(value = "/classrooms/new-classroom", produces = "text/html")
     public String showNewForm(Model model) {
         Classroom classroom = new Classroom();
         model.addAttribute("classroom", classroom);
         return "classrooms/new-classroom";
     }
 
-    @PostMapping("/classrooms")
+    @PostMapping(value = "/classrooms", produces = "text/html")
     public String save(@ModelAttribute("classroom") Classroom classroom) {
         service.createClassroom(classroom);
         return "redirect:/classrooms";
     }
 
-    @PutMapping("/classrooms/{id}")
+    @PutMapping(value = "/classrooms/{id}", produces = "text/html")
     public ModelAndView showEditForm(@PathVariable(name = "id") int id) {
         ModelAndView mav = new ModelAndView("classrooms/edit-classroom");
         Classroom classroom = service.findClassroomById(id);
@@ -59,16 +59,16 @@ public class ClassroomController {
         return mav;
     }
 
-    @PutMapping("/classrooms")
+    @PutMapping(value = "/classrooms", produces = "text/html")
     public String update(@ModelAttribute("classroom") Classroom classroom) {
         service.updateClassroom(classroom);
         return "redirect:/classrooms";
     }
 
-    @DeleteMapping("/classrooms/{id}")
+    @DeleteMapping(value = "/classrooms/{id}", produces = "text/html")
     public String delete(@PathVariable(name = "id") int id) {
         service.deleteClassroom(id);
         return "redirect:/classrooms";
     }
-
+    
 }

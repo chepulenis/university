@@ -23,14 +23,14 @@ public class SubjectController {
     @Autowired
     private SubjectService service;
     
-    @GetMapping("/subjects")
+    @GetMapping(value = "/subjects", produces = "text/html")
     public String viewSubjectPage(Model model) {
         List<Subject> subjects = service.findAllSubjects();
         model.addAttribute("subjects", subjects);
         return "subjects/subjects";
     }
     
-    @GetMapping("/subjects/{id}")
+    @GetMapping(value = "/subjects/{id}", produces = "text/html")
     public ModelAndView getSubjectById(@RequestParam int id) {
         Subject subject = service.findSubjectById(id);
         ModelAndView mav = new ModelAndView("subjects/result");
@@ -38,20 +38,20 @@ public class SubjectController {
         return mav;
     }
 
-    @GetMapping("/subjects/new-subject")
+    @GetMapping(value = "/subjects/new-subject", produces = "text/html")
     public String showNewForm(Model model) {
         Subject subject = new Subject();
         model.addAttribute("subject", subject);
         return "subject/new-subject";
     }
 
-    @PostMapping("/subjects")
+    @PostMapping(value = "/subjects", produces = "text/html")
     public String save(@ModelAttribute("subject") Subject subject) {
         service.createSubject(subject);
         return "redirect:/subjects";
     }
 
-    @PutMapping("/subjects/{id}")
+    @PutMapping(value = "/subjects/{id}", produces = "text/html")
     public ModelAndView showEditForm(@PathVariable(name = "id") int id) {
         ModelAndView mav = new ModelAndView("subject/edit-subject");
         Subject subject = service.findSubjectById(id);
@@ -59,13 +59,13 @@ public class SubjectController {
         return mav;
     }
 
-    @PutMapping("/subjects")
+    @PutMapping(value = "/subjects", produces = "text/html")
     public String update(@ModelAttribute("subject") Subject subject) {
         service.updateSubject(subject);
         return "redirect:/subjects";
     }
 
-    @DeleteMapping("/subjects/{id}")
+    @DeleteMapping(value = "/subjects/{id}", produces = "text/html")
     public String delete(@PathVariable(name = "id") int id) {
         service.deleteSubject(id);
         return "redirect:/subjects";

@@ -23,14 +23,14 @@ public class StudentController {
     @Autowired
     private StudentService service;
 
-    @GetMapping("/students")
+    @GetMapping(value = "/students", produces = "text/html")
     public String viewStudentsPage(Model model) {
         List<Student> students = service.findAllStudents();
         model.addAttribute("students", students);
         return "students/students";
     }
     
-    @GetMapping("/students/{id}")
+    @GetMapping(value = "/students/{id}", produces = "text/html")
     public ModelAndView getStudentById(@RequestParam int id) {
         Student student = service.findStudentById(id);
         ModelAndView mav = new ModelAndView("students/result");
@@ -38,20 +38,20 @@ public class StudentController {
         return mav;
     }
 
-    @GetMapping("/students/new-student")
+    @GetMapping(value = "/students/new-student", produces = "text/html")
     public String showNewForm(Model model) {
         Student student = new Student();
         model.addAttribute("student", student);
         return "students/new-student";
     }
 
-    @PostMapping("/students")
+    @PostMapping(value = "/students", produces = "text/html")
     public String save(@ModelAttribute("student") Student student) {
         service.createStudent(student);
         return "redirect:/students";
     }
 
-    @PutMapping("/students/{id}")
+    @PutMapping(value = "/students/{id}", produces = "text/html")
     public ModelAndView showEditForm(@PathVariable(name = "id") int id) {
         ModelAndView mav = new ModelAndView("students/edit-student");
         Student student = service.findStudentById(id);
@@ -59,13 +59,13 @@ public class StudentController {
         return mav;
     }
 
-    @PutMapping("/students")
+    @PutMapping(value = "/students", produces = "text/html")
     public String update(@ModelAttribute("student") Student student) {
         service.updateStudent(student);
         return "redirect:/students";
     }
 
-    @DeleteMapping("/students/{id}")
+    @DeleteMapping(value = "/students/{id}", produces = "text/html")
     public String delete(@PathVariable(name = "id") int id) {
         service.deleteStudent(id);
         return "redirect:/students";

@@ -23,14 +23,14 @@ public class GroupController {
     @Autowired
     private GroupService service;
     
-    @GetMapping("/groups")
+    @GetMapping(value = "/groups", produces = "text/html")
     public String viewGroupPage(Model model) {
         List<Group> groups = service.findAllGroups();
         model.addAttribute("groups", groups);
         return "groups/groups";
     }
     
-    @GetMapping("/groups/{id}")
+    @GetMapping(value = "/groups/{id}", produces = "text/html")
     public ModelAndView getGroupById(@RequestParam int id) {
         Group group = service.findGroupById(id);
         ModelAndView mav = new ModelAndView("groups/result");
@@ -38,20 +38,20 @@ public class GroupController {
         return mav;
     }
 
-    @GetMapping("groups/new-group")
+    @GetMapping(value = "groups/new-group", produces = "text/html")
     public String showNewForm(Model model) {
         Group group = new Group();
         model.addAttribute("group", group);
         return "groups/new-group";
     }
 
-    @PostMapping("/groups")
+    @PostMapping(value = "/groups", produces = "text/html")
     public String save(@ModelAttribute("group") Group group) {
         service.createGroup(group);
         return "redirect:/groups";
     }
 
-    @PutMapping("/groups/{id}")
+    @PutMapping(value = "/groups/{id}", produces = "text/html")
     public ModelAndView showEditForm(@PathVariable(name = "id") int id) {
         ModelAndView mav = new ModelAndView("groups/edit-group");
         Group group = service.findGroupById(id);
@@ -59,13 +59,13 @@ public class GroupController {
         return mav;
     }
 
-    @PutMapping("/groups")
+    @PutMapping(value = "/groups", produces = "text/html")
     public String update(@ModelAttribute("group") Group group) {
         service.updateGroup(group);
         return "redirect:/groups";
     }
 
-    @DeleteMapping("/groups/{id}")
+    @DeleteMapping(value = "/groups/{id}", produces = "text/html")
     public String delete(@PathVariable(name = "id") int id) {
         service.deleteGroup(id);
         return "redirect:/groups";

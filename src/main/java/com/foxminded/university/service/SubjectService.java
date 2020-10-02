@@ -35,14 +35,16 @@ public class SubjectService {
         repository.deleteById(id);
     }
     
-    public void updateSubject(Subject subject) {
+    public Subject updateSubject(Subject subject) {
         logger.info("Subject {} updated", subject);
         repository.save(subject);
+        return subject;
     }
     
-    public void createSubject(Subject subject) {
+    public Subject createSubject(Subject subject) {
         logger.info("Subject {} created", subject);
         repository.save(subject);
+        return subject;
     }
     
 }

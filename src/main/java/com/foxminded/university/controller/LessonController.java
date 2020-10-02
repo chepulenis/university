@@ -24,14 +24,14 @@ public class LessonController {
     @Autowired
     private LessonService service;
 
-    @GetMapping("/lessons")
+    @GetMapping(value = "/lessons", produces = "text/html")
     public String viewLessonsPage(Model model) {
         List<Lesson> lessons = service.findAllLessons();
         model.addAttribute("lessons", lessons);
         return "lessons/lessons";
     }
     
-    @GetMapping("/lessons/{id}")
+    @GetMapping(value = "/lessons/{id}", produces = "text/html")
     public ModelAndView getLessonById(@RequestParam int id) {
         Lesson lesson = service.findLessonById(id);
         ModelAndView mav = new ModelAndView("lessons/result");
@@ -39,20 +39,20 @@ public class LessonController {
         return mav;
     }
 
-    @GetMapping("/lessons/new-lesson")
+    @GetMapping(value = "/lessons/new-lesson", produces = "text/html")
     public String showNewForm(Model model) {
         Lesson lesson = new Lesson();
         model.addAttribute("lesson", lesson);
         return "lessons/new-lesson";
     }
 
-    @PostMapping("/lessons")
+    @PostMapping(value = "/lessons", produces = "text/html")
     public String save(@ModelAttribute("lesson") Lesson lesson) {
         service.createLesson(lesson);
         return "redirect:/lessons";
     }
 
-    @PutMapping("/lessons/{id}")
+    @PutMapping(value = "/lessons/{id}", produces = "text/html")
     public ModelAndView showEditForm(@PathVariable(name = "id") int id) {
         ModelAndView mav = new ModelAndView("lessons/edit-lesson");
         Lesson lesson = service.findLessonById(id);
@@ -60,36 +60,36 @@ public class LessonController {
         return mav;
     }
 
-    @PutMapping("/lessons")
+    @PutMapping(value = "/lessons", produces = "text/html")
     public String update(@ModelAttribute("lesson") Lesson lesson) {
         service.updateLesson(lesson);
         return "redirect:/lessons";
     }
 
-    @DeleteMapping("/lessons/{id}")
+    @DeleteMapping(value = "/lessons/{id}", produces = "text/html")
     public String delete(@PathVariable(name = "id") int id) {
         service.deleteLesson(id);
         return "redirect:/lessons";
     }
     
-    @GetMapping("/group-timetable")
+    @GetMapping(value = "/group-timetable", produces = "text/html")
     public String viewGroupDailyTimetablePage() {
         return "timetable/group-timetable";
     }
     
-    @GetMapping("/teacher-timetable")
+    @GetMapping(value = "/teacher-timetable", produces = "text/html")
     public String viewTeacherDailyTimetablePage() {
         return "timetable/teacher-timetable";
     }
     
-    @PostMapping(value = "/group-timetable-result", params = "date")
+    @PostMapping(value = "/group-timetable-result", params = "date", produces = "text/html")
     public String viewGroupTimetablePage(Model model, @RequestParam(name = "groupId") int groupId, @RequestParam(name = "date") Date date) {
         List<Lesson> lessons = service.findGroupDailyLessons(groupId, date);
         model.addAttribute("lessons", lessons);
         return "timetable/group-timetable-result";
     }
     
-    @PostMapping(value = "/group-timetable-result", params = "month")
+    @PostMapping(value = "/group-timetable-result", params = "month", produces = "text/html")
     public String viewGroupTimetablePage(Model model, @RequestParam(name = "groupId") int groupId,  @RequestParam(name = "month") String yearAndMonth) {
         int year = Integer.parseInt(yearAndMonth.substring(0, 4));
         int month = Integer.parseInt(yearAndMonth.substring(5, 7));
@@ -98,14 +98,14 @@ public class LessonController {
         return "timetable/group-timetable-result";
     }
     
-    @PostMapping(value = "/teacher-timetable-result", params = "date")
+    @PostMapping(value = "/teacher-timetable-result", params = "date", produces = "text/html")
     public String viewTeacherTimetablePage(Model model, @RequestParam(name = "teacherId") int teacherId, @RequestParam(name = "date") Date date) {
         List<Lesson> lessons = service.findTeacherDailyLessons(teacherId, date);
         model.addAttribute("lessons", lessons);
         return "timetable/teacher-timetable-result";
     }
     
-    @PostMapping(value = "/teacher-timetable-result", params = "month")
+    @PostMapping(value = "/teacher-timetable-result", params = "month", produces = "text/html")
     public String viewTeacherTimetablePage(Model model, @RequestParam(name = "teacherId") int teacherId,  @RequestParam(name = "month") String yearAndMonth) {
         int year = Integer.parseInt(yearAndMonth.substring(0, 4));
         int month = Integer.parseInt(yearAndMonth.substring(5, 7));

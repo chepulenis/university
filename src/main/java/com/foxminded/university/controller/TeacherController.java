@@ -23,14 +23,14 @@ public class TeacherController {
     @Autowired
     private TeacherService service;
 
-    @GetMapping("/teachers")
+    @GetMapping(value = "/teachers", produces = "text/html")
     public String viewTeachersPage(Model model) {
         List<Teacher> teachers = service.findAllTeachers();
         model.addAttribute("teachers", teachers);
         return "teachers/teachers";
     }
     
-    @GetMapping("/teachers/{id}")
+    @GetMapping(value = "/teachers/{id}", produces = "text/html")
     public ModelAndView getTeacherById(@RequestParam int id) {
         Teacher teacher = service.findTeacherById(id);
         ModelAndView mav = new ModelAndView("teachers/result");
@@ -38,20 +38,20 @@ public class TeacherController {
         return mav;
     }
 
-    @GetMapping("/teachers/new-teacher")
+    @GetMapping(value = "/teachers/new-teacher", produces = "text/html")
     public String showNewForm(Model model) {
         Teacher teacher = new Teacher();
         model.addAttribute("teacher", teacher);
         return "teachers/new-teacher";
     }
 
-    @PostMapping("/teachers")
+    @PostMapping(value = "/teachers", produces = "text/html")
     public String save(@ModelAttribute("teacher") Teacher teacher) {
         service.createTeacher(teacher);
         return "redirect:/teachers";
     }
 
-    @PutMapping("/teachers/{id}")
+    @PutMapping(value = "/teachers/{id}", produces = "text/html")
     public ModelAndView showEditForm(@PathVariable(name = "id") int id) {
         ModelAndView mav = new ModelAndView("teachers/edit-teacher");
         Teacher teacher = service.findTeacherById(id);
@@ -59,13 +59,13 @@ public class TeacherController {
         return mav;
     }
 
-    @PutMapping("/teachers")
+    @PutMapping(value = "/teachers", produces = "text/html")
     public String update(@ModelAttribute("teacher") Teacher teacher) {
         service.updateTeacher(teacher);
         return "redirect:/teachers";
     }
 
-    @DeleteMapping("/teachers/{id}")
+    @DeleteMapping(value = "/teachers/{id}", produces = "text/html")
     public String delete(@PathVariable(name = "id") int id) {
         service.deleteTeacher(id);
         return "redirect:/teachers";

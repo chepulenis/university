@@ -35,14 +35,16 @@ public class ClassroomService {
         repository.deleteById(id);
     }
 
-    public void updateClassroom(Classroom classroom) {
+    public Classroom updateClassroom(Classroom classroom) {
         logger.info("Classroom {} updated", classroom);
         repository.save(classroom);
+        return classroom;
     }
 
-    public void createClassroom(Classroom classroom) {
+    public Classroom createClassroom(Classroom classroom) {
         logger.info("Classroom {} created", classroom);
         repository.save(classroom);
+        return classroom;
     }
 
 }

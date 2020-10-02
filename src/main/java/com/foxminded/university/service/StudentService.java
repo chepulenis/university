@@ -35,14 +35,16 @@ public class StudentService {
         repository.deleteById(id);
     }
     
-    public void updateStudent(Student student) {
+    public Student updateStudent(Student student) {
         logger.info("Student {} updated", student);
         repository.save(student);
+        return student;
     }
     
-    public void createStudent(Student student) {
+    public Student createStudent(Student student) {
         logger.info("Student {} created", student);
         repository.save(student);
+        return student;
     }
     
 }

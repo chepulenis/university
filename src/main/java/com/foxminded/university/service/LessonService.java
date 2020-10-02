@@ -31,14 +31,16 @@ public class LessonService {
         return lessons;
     }
 
-    public void createLesson(Lesson lesson) {
+    public Lesson createLesson(Lesson lesson) {
         logger.info("Lesson {} created", lesson);
         repository.save(lesson);
+        return lesson;
     }
 
-    public void updateLesson(Lesson lesson) {
+    public Lesson updateLesson(Lesson lesson) {
         logger.info("Lesson {} updated", lesson);
         repository.save(lesson);
+        return lesson;
     }
 
     public void deleteLesson(int id) {

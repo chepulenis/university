@@ -36,14 +36,16 @@ public class TeacherService {
         repository.deleteById(id);
     }
     
-    public void updateTeacher(Teacher teacher) {
+    public Teacher updateTeacher(Teacher teacher) {
         logger.info("Teacher {} updated", teacher);
         repository.save(teacher);
+        return teacher;
     }
     
-    public void createTeacher(Teacher teacher) {
+    public Teacher createTeacher(Teacher teacher) {
         logger.info("Teacher {} created", teacher);
         repository.save(teacher);
+        return teacher;
     }
     
 }
