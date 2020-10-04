@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,29 +48,28 @@ public class LessonRestController {
         service.deleteLesson(id);
     }
 
-    @PostMapping(value = "/group-timetable-result", params = "date", consumes = "application/json", produces = "application/json")
-    public List<Lesson> viewGroupTimetablePage(Model model, @RequestParam(name = "groupId") int groupId,
+    public List<Lesson> viewGroupTimetablePage(@RequestParam(name = "groupId") int groupId,
             @RequestParam(name = "date") Date date) {
         List<Lesson> lessons = service.findGroupDailyLessons(groupId, date);
         return lessons;
     }
     
-    @PostMapping(value = "/group-timetable-result", params = "month", consumes = "application/json", produces = "application/json")
-    public List<Lesson> viewGroupTimetablePage(Model model, @RequestParam(name = "groupId") int groupId,  @RequestParam(name = "month") String yearAndMonth) {
+    @GetMapping(value = "/group-timetable-result", params = "month",  produces = "application/json")
+    public List<Lesson> viewGroupTimetablePage(@RequestParam(name = "groupId") int groupId,  @RequestParam(name = "month") String yearAndMonth) {
         int year = Integer.parseInt(yearAndMonth.substring(0, 4));
         int month = Integer.parseInt(yearAndMonth.substring(5, 7));
         List<Lesson> lessons = service.findGroupMonthlyLessons(groupId, year, month);
         return lessons;
     }
     
-    @PostMapping(value = "/teacher-timetable-result", params = "date", consumes = "application/json", produces = "application/json")
-    public List<Lesson> viewTeacherTimetablePage(Model model, @RequestParam(name = "teacherId") int teacherId, @RequestParam(name = "date") Date date) {
+    @GetMapping(value = "/teacher-timetable-result", params = "date", produces = "application/json")
+    public List<Lesson> viewTeacherTimetablePage(@RequestParam(name = "teacherId") int teacherId, @RequestParam(name = "date") Date date) {
         List<Lesson> lessons = service.findTeacherDailyLessons(teacherId, date);
         return lessons;
     }
     
-    @PostMapping(value = "/teacher-timetable-result", params = "month", consumes = "application/json", produces = "application/json")
-    public List<Lesson> viewTeacherTimetablePage(Model model, @RequestParam(name = "teacherId") int teacherId,  @RequestParam(name = "month") String yearAndMonth) {
+    @GetMapping(value = "/teacher-timetable-result", params = "month", produces = "application/json")
+    public List<Lesson> viewTeacherTimetablePage(@RequestParam(name = "teacherId") int teacherId,  @RequestParam(name = "month") String yearAndMonth) {
         int year = Integer.parseInt(yearAndMonth.substring(0, 4));
         int month = Integer.parseInt(yearAndMonth.substring(5, 7));
         List<Lesson> lessons = service.findTeacherMonthlyLessons(teacherId, year, month);
