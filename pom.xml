@@ -19,8 +19,7 @@
         <maven.compiler.target>1.10</maven.compiler.target>
         <maven.compiler.source>1.10</maven.compiler.source>
         <java.version>1.10</java.version>
-        <swagger.version>1.4.8</swagger.version>
-        <swagger-ui.version>3.0.0</swagger-ui.version>
+        <swagger.version>3.0.0</swagger.version>
     </properties>
 
     <dependencies>
@@ -64,7 +63,7 @@
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-boot-starter</artifactId>
-            <version>3.0.0</version>
+            <version>${swagger.version}</version>
         </dependency>
     </dependencies>
 
