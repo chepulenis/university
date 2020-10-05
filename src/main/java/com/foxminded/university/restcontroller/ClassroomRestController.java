@@ -15,7 +15,7 @@ import com.foxminded.university.domain.Classroom;
 import com.foxminded.university.service.ClassroomService;
 
 @RestController
-public class ClasroomRestController {
+public class ClassroomRestController {
     
     @Autowired
     private ClassroomService service;

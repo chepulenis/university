@@ -9,6 +9,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="groups")
 public class Group {
@@ -18,6 +20,7 @@ public class Group {
     @Pattern(regexp = "[a-zA-Z]{2}\\-\\d{2}")
     private String name; 
     
+    @JsonIgnore
     @Size(min = 0, max = 30)
     @OneToMany (mappedBy = "group")
     private List<Student> students;

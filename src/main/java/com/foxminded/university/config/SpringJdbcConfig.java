@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @ComponentScan({ "com.foxminded.repository", "com.foxminded.service", "com.foxminded.controller", "com.foxminded.restcontroller" })
 @PropertySource("classpath:application.properties")
+@EnableWebMvc
 public class SpringJdbcConfig {
 
     @Value("${spring.datasource.url}")

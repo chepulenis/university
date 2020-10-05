@@ -53,27 +53,5 @@ public class LessonRestController {
         List<Lesson> lessons = service.findGroupDailyLessons(groupId, date);
         return lessons;
     }
-    
-    @GetMapping(value = "/group-timetable-result", params = "month",  produces = "application/json")
-    public List<Lesson> viewGroupTimetablePage(@RequestParam(name = "groupId") int groupId,  @RequestParam(name = "month") String yearAndMonth) {
-        int year = Integer.parseInt(yearAndMonth.substring(0, 4));
-        int month = Integer.parseInt(yearAndMonth.substring(5, 7));
-        List<Lesson> lessons = service.findGroupMonthlyLessons(groupId, year, month);
-        return lessons;
-    }
-    
-    @GetMapping(value = "/teacher-timetable-result", params = "date", produces = "application/json")
-    public List<Lesson> viewTeacherTimetablePage(@RequestParam(name = "teacherId") int teacherId, @RequestParam(name = "date") Date date) {
-        List<Lesson> lessons = service.findTeacherDailyLessons(teacherId, date);
-        return lessons;
-    }
-    
-    @GetMapping(value = "/teacher-timetable-result", params = "month", produces = "application/json")
-    public List<Lesson> viewTeacherTimetablePage(@RequestParam(name = "teacherId") int teacherId,  @RequestParam(name = "month") String yearAndMonth) {
-        int year = Integer.parseInt(yearAndMonth.substring(0, 4));
-        int month = Integer.parseInt(yearAndMonth.substring(5, 7));
-        List<Lesson> lessons = service.findTeacherMonthlyLessons(teacherId, year, month);
-        return lessons;
-    }
 
 }
