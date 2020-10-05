@@ -28,7 +28,7 @@ public class SpringJdbcConfig {
       return dataSource;
   }
   
-    @Bean
+     @Bean
     public JdbcTemplate jdbcTemplate() throws NamingException {
         var template = new JdbcTemplate();
         template.setDataSource(dataSource());
