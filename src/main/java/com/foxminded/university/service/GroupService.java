@@ -19,7 +19,7 @@ public class GroupService {
     private GroupRepository repository;
 
     public Group findGroupById(int id) {
-        Group group = repository.findById(id).get();
+        Group group = repository.findById(id).orElse(null);
         logger.info("Group {} by id {} has been found", group, id);
         return group;
     }

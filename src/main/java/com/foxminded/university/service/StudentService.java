@@ -19,7 +19,7 @@ public class StudentService {
     private StudentRepository repository;
 
     public Student findStudentById(int id) {
-        Student student = repository.findById(id).get();
+        Student student = repository.findById(id).orElse(null);
         logger.info("Student {} by id {} found", student, id);
         return student;
     }

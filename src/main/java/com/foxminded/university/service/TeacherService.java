@@ -20,7 +20,7 @@ public class TeacherService {
     
     
     public Teacher findTeacherById(int id) {
-        Teacher teacher = repository.findById(id).get();
+        Teacher teacher = repository.findById(id).orElse(null);
         logger.info("Teacher {} by id {} has been found", teacher, id);
         return teacher;
     }

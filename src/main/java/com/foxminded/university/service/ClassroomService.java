@@ -2,6 +2,8 @@ package com.foxminded.university.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import com.foxminded.university.domain.Classroom;
 import com.foxminded.university.repository.ClassroomRepository;
 
 @Service
+@Transactional
 public class ClassroomService {
 
     private static final Logger logger = LoggerFactory.getLogger(ClassroomService.class);
@@ -19,7 +22,7 @@ public class ClassroomService {
     private ClassroomRepository repository;
 
     public Classroom findClassroomById(int id) {
-        Classroom classroom = repository.findById(id).get();
+        Classroom classroom = repository.findById(id).orElse(null);
         logger.info("Classroom {} by id {} has been found", classroom, id);
         return classroom;
     }

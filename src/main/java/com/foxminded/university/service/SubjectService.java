@@ -19,7 +19,7 @@ public class SubjectService {
     private SubjectRepository repository;
     
     public Subject findSubjectById(int id) {
-        Subject subject = repository.findById(id).get(); 
+        Subject subject = repository.findById(id).orElse(null); 
         logger.info("Subject {} by id {} has been found", subject, id);
         return subject;
     }

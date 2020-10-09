@@ -20,7 +20,7 @@ public class LessonService {
     private LessonRepository repository;
     
     public Lesson findLessonById(int id) {
-        Lesson lesson = repository.findById(id).get();
+        Lesson lesson = repository.findById(id).orElse(null);
         logger.info("Lesson {} by id {} has been found", lesson, id);
         return lesson;
     }
