@@ -1,4 +1,4 @@
-package com.foxminded.university.integration.classroom;
+package com.foxminded.university.integration.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,7 +22,7 @@ import com.foxminded.university.repository.ClassroomRepository;
 import com.foxminded.university.service.ClassroomService;
 
 @RunWith(SpringRunner.class)
-public class ClassroomServiceTest {
+public class SubjectServiceTest {
 
     @TestConfiguration
     static class ClassroomServiceTestContextConfiguration{
@@ -75,7 +75,6 @@ public class ClassroomServiceTest {
         Util.verifyFindAllIsCalledOnce(repository);
         assertThat(classrooms).hasSize(3).extracting(Classroom::getId).contains(classroom1.getId(), classroom2.getId(), classroom3.getId());
         assertThat(classrooms).hasSize(3).extracting(Classroom::getName).contains(classroom1.getName(), classroom2.getName(), classroom3.getName());
-        
     }
     
 }

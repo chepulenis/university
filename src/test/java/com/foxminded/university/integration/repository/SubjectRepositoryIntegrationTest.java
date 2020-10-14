@@ -1,4 +1,4 @@
-package com.foxminded.university.integration.group;
+package com.foxminded.university.integration.repository;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
@@ -14,25 +14,25 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.foxminded.university.domain.Group;
-import com.foxminded.university.repository.GroupRepository;
+import com.foxminded.university.domain.Subject;
+import com.foxminded.university.repository.SubjectRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class GroupRepositoryIntegrationTest {
+public class SubjectRepositoryIntegrationTest {
 
     @Autowired
     private TestEntityManager entityManager;
 
     @Autowired
-    private GroupRepository repository;
+    private SubjectRepository repository;
 
     @Test
-    public void whenFindByIdThenReturnGroup() {
-        Group expected = new Group(1, "xx-33");
+    public void whenFindByIdThenReturnSubject() {
+        Subject expected = new Subject(1, "Mathematics");
         entityManager.persistAndFlush(expected);
 
-        Group actual = repository.findById(1).get();
+        Subject actual = repository.findById(1).get();
         assertEquals(expected, actual);
     }
 
@@ -44,20 +44,20 @@ public class GroupRepositoryIntegrationTest {
     }
     
     @Test
-    public void givenListOfGroupsWhenFindAllThenReturnAllGroups() {
-        Group group1 = new Group(1, "af-23");
-        Group group2 = new Group(2, "bs-13");
-        Group group3 = new Group(3, "sz-41");
-        List<Group> expectedGroups = Arrays.asList(group1, group2, group3);
+    public void givenListOfSubjectsWhenFindAllThenReturnAllSubjects() {
+        Subject english = new Subject(1, "English");
+        Subject math = new Subject(2, "Mathematics");
+        Subject physics = new Subject(3, "Physics");
+        List<Subject> expectedSubjects = Arrays.asList(english, math, physics);
         
-        entityManager.persist(group1);
-        entityManager.persist(group2);
-        entityManager.persist(group3);
+        entityManager.persist(english);
+        entityManager.persist(math);
+        entityManager.persist(physics);
         entityManager.flush();
         
-        List<Group> actualGroups = repository.findAll();
+        List<Subject> actualSubjects = repository.findAll();
         
-        assertEquals(expectedGroups, actualGroups);
+        assertEquals(expectedSubjects, actualSubjects);
     }
 
 }

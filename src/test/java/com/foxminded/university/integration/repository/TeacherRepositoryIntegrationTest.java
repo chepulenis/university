@@ -1,4 +1,4 @@
-package com.foxminded.university.integration.teacher;
+package com.foxminded.university.integration.repository;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;

@@ -1,4 +1,4 @@
-package com.foxminded.university.integration.classroom;
+package com.foxminded.university.integration.restcontroller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.is;
@@ -25,48 +25,50 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.foxminded.university.domain.Classroom;
+import com.foxminded.university.domain.Group;
 import com.foxminded.university.integration.Util;
-import com.foxminded.university.repository.ClassroomRepository;
+import com.foxminded.university.repository.GroupRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-public class ClassroomRestControllerIntegrationTest {
-
+public class GroupRestControllerIntegrationTest {
+    
     @Autowired
     private MockMvc mvc;
-
+    
     @Autowired
-    ClassroomRepository repository;
-
+    GroupRepository repository;
+    
     @After
     public void resetDb() {
         repository.deleteAll();
     }
-
+    
     @Test
-    public void whenValidInputThenCreateClassroom() throws IOException, Exception {
-        Classroom classroom = new Classroom(1, "Class of Chemistry", 34);
-        mvc.perform(post("/classrooms").contentType(MediaType.APPLICATION_JSON).content(Util.toJson(classroom)));
-
-        List<Classroom> found = repository.findAll();
-        assertThat(found).extracting(Classroom::getId).containsOnly(1);
+    public void whenValidInputThenCreateGroup() throws IOException, Exception {
+        Group group = new Group(1, "zz-22");
+        mvc.perform(post("/groups").contentType(MediaType.APPLICATION_JSON).content(Util.toJson(group)));
+       
+        List<Group> found = repository.findAll();
+        assertThat(found).extracting(Group::getId).containsOnly(1);
     }
-
+    
     @Test
-    public void givenClassroomsWhenGetClassroomsThenStatus200() throws Exception {
-        Classroom classroom1 = new Classroom(1, "Class of Arts", 24);
-        repository.saveAndFlush(classroom1);
-        Classroom classroom2 = new Classroom(2, "Class of Physics", 30);
-        repository.saveAndFlush(classroom2);
-
-        mvc.perform(get("/classrooms").contentType(MediaType.APPLICATION_JSON)).andDo(print())
-                .andExpect(status().isOk()).andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$", hasSize(greaterThanOrEqualTo(2)))).andExpect(jsonPath("$[0].id", is(1)))
-                .andExpect(jsonPath("$[0].name", is("Class of Arts"))).andExpect(jsonPath("$[1].id", is(2)))
-                .andExpect(jsonPath("$[1].name", is("Class of Physics")));
+    public void givenGroupsWhenGetGroupsThenStatus200() throws Exception{
+        Group group1 = new Group(1, "af-33");
+        repository.saveAndFlush(group1);
+        Group group2 = new Group(2, "bx-73");
+        repository.saveAndFlush(group2);
+        
+        mvc.perform(get("/groups").contentType(MediaType.APPLICATION_JSON))
+        .andDo(print())
+        .andExpect(status().isOk())
+        .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+        .andExpect(jsonPath("$", hasSize(greaterThanOrEqualTo(2))))
+        .andExpect(jsonPath("$[0].id", is(1))).andExpect(jsonPath("$[0].name", is("af-33")))
+        .andExpect(jsonPath("$[1].id", is(2))).andExpect(jsonPath("$[1].name", is("bx-73")));
     }
-
+    
 }

@@ -1,4 +1,4 @@
-package com.foxminded.university.integration.subject;
+package com.foxminded.university.integration.restcontroller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.is;

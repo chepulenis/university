@@ -1,4 +1,4 @@
-package com.foxminded.university.integration.subject;
+package com.foxminded.university.integration.controller;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.reset;
@@ -18,28 +18,29 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.foxminded.university.controller.SubjectController;
-import com.foxminded.university.domain.Subject;
-import com.foxminded.university.service.SubjectService;
+import com.foxminded.university.controller.TeacherController;
+import com.foxminded.university.domain.Teacher;
+import com.foxminded.university.service.TeacherService;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = SubjectController.class)
-public class SubjectControllerIntegrationTest {
+@WebMvcTest(value = TeacherController.class)
+public class TeacherControllerIntegrationTest {
 
     @Autowired
     private MockMvc mvc;
 
     @MockBean
-    private SubjectService service;
+    private TeacherService service;
+
 
     @Test
-    public void whenPostSubjectThenCreateSubject() throws Exception {
-        Subject subject = new Subject(1, "Mathematics");
-        given(service.createSubject(Mockito.any())).willReturn(subject);
+    public void whenPostTeacherThenCreateTeacher() throws Exception {
+        Teacher teacher = new Teacher (1, "Andrew", "Robertson", 38);
+        given(service.createTeacher(Mockito.any())).willReturn(teacher);
 
-        mvc.perform(post("/subjects").contentType(MediaType.TEXT_HTML_VALUE)).andExpect(status().isFound())
-                .andExpect(redirectedUrl("/subjects"));
-        verify(service, VerificationModeFactory.times(1)).createSubject(Mockito.any());
+        mvc.perform(post("/teachers").contentType(MediaType.TEXT_HTML_VALUE)).andExpect(status().isFound())
+                .andExpect(redirectedUrl("/teachers"));
+        verify(service, VerificationModeFactory.times(1)).createTeacher(Mockito.any());
         reset(service);
     }
 }

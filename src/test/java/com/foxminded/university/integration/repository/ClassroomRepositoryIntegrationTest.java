@@ -1,4 +1,4 @@
-package com.foxminded.university.integration.subject;
+package com.foxminded.university.integration.repository;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
@@ -14,25 +14,25 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.foxminded.university.domain.Subject;
-import com.foxminded.university.repository.SubjectRepository;
+import com.foxminded.university.domain.Classroom;
+import com.foxminded.university.repository.ClassroomRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class SubjectRepositoryIntegrationTest {
+public class ClassroomRepositoryIntegrationTest {
 
     @Autowired
     private TestEntityManager entityManager;
 
     @Autowired
-    private SubjectRepository repository;
-
+    private ClassroomRepository repository;
+    
     @Test
-    public void whenFindByIdThenReturnSubject() {
-        Subject expected = new Subject(1, "Mathematics");
+    public void whenFindByIdThenReturnClassroom() {
+        Classroom expected = new Classroom(1, "Class of Mathematics", 28);
         entityManager.persistAndFlush(expected);
 
-        Subject actual = repository.findById(1).get();
+        Classroom actual = repository.findById(1).get();
         assertEquals(expected, actual);
     }
 
@@ -44,20 +44,20 @@ public class SubjectRepositoryIntegrationTest {
     }
     
     @Test
-    public void givenListOfSubjectsWhenFindAllThenReturnAllSubjects() {
-        Subject english = new Subject(1, "English");
-        Subject math = new Subject(2, "Mathematics");
-        Subject physics = new Subject(3, "Physics");
-        List<Subject> expectedSubjects = Arrays.asList(english, math, physics);
+    public void givenListOfClassroomsWhenFindAllThenReturnAllClassrooms() {
+        Classroom english = new Classroom(1, "Class of English", 28);
+        Classroom math = new Classroom(2, "Class of Mathematics", 25);
+        Classroom physics = new Classroom(3, "Class of Physics", 26);
+        List<Classroom> expectedClassrooms = Arrays.asList(english, math, physics);
         
         entityManager.persist(english);
         entityManager.persist(math);
         entityManager.persist(physics);
         entityManager.flush();
         
-        List<Subject> actualSubjects = repository.findAll();
+        List<Classroom> actualClassrooms = repository.findAll();
         
-        assertEquals(expectedSubjects, actualSubjects);
+        assertEquals(expectedClassrooms, actualClassrooms);
     }
 
 }

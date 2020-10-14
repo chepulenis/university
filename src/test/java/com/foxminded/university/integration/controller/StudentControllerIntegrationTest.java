@@ -1,4 +1,4 @@
-package com.foxminded.university.integration.classroom;
+package com.foxminded.university.integration.controller;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.reset;
@@ -18,29 +18,30 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.foxminded.university.controller.ClassroomController;
-import com.foxminded.university.domain.Classroom;
-import com.foxminded.university.service.ClassroomService;
+import com.foxminded.university.controller.StudentController;
+import com.foxminded.university.domain.Group;
+import com.foxminded.university.domain.Student;
+import com.foxminded.university.service.StudentService;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = ClassroomController.class)
-public class ClassroomControllerIntegrationTest {
+@WebMvcTest(value = StudentController.class)
+public class StudentControllerIntegrationTest {
 
     @Autowired
     private MockMvc mvc;
 
     @MockBean
-    private ClassroomService service;
+    private StudentService service;
 
 
     @Test
-    public void whenPostClassroomThenCreateClassroom() throws Exception {
-        Classroom classroom = new Classroom(1, "Class of Mathematics", 28);
-        given(service.createClassroom(Mockito.any())).willReturn(classroom);
+    public void whenPostStudentThenCreateStudent() throws Exception {
+        Student student = new Student (1, "John", "Doe", 23, new Group(1, "zz-55"));
+        given(service.createStudent(Mockito.any())).willReturn(student);
 
-        mvc.perform(post("/classrooms").contentType(MediaType.TEXT_HTML_VALUE)).andExpect(status().isFound())
-                .andExpect(redirectedUrl("/classrooms"));
-        verify(service, VerificationModeFactory.times(1)).createClassroom(Mockito.any());
+        mvc.perform(post("/students").contentType(MediaType.TEXT_HTML_VALUE)).andExpect(status().isFound())
+                .andExpect(redirectedUrl("/students"));
+        verify(service, VerificationModeFactory.times(1)).createStudent(Mockito.any());
         reset(service);
     }
 }

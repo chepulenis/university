@@ -1,4 +1,4 @@
-package com.foxminded.university.integration.group;
+package com.foxminded.university.integration.controller;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.reset;
