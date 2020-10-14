@@ -1,4 +1,4 @@
-package com.foxminded.university.integration;
+package com.foxminded.university.integration.teacher;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.reset;
@@ -7,7 +7,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -19,33 +18,29 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.foxminded.university.controller.ClassroomController;
-import com.foxminded.university.domain.Classroom;
-import com.foxminded.university.service.ClassroomService;
+import com.foxminded.university.controller.TeacherController;
+import com.foxminded.university.domain.Teacher;
+import com.foxminded.university.service.TeacherService;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = ClassroomController.class)
-public class ClassroomControllerIntegrationTest {
+@WebMvcTest(value = TeacherController.class)
+public class TeacherControllerIntegrationTest {
 
     @Autowired
     private MockMvc mvc;
 
     @MockBean
-    private ClassroomService service;
+    private TeacherService service;
 
-    @Before
-    public void setUp() throws Exception {
-
-    }
 
     @Test
-    public void whenPostClassroomThenCreateClassroom() throws Exception {
-        Classroom classroom = new Classroom(1, "Class of Mathematics", 28);
-        given(service.createClassroom(Mockito.any())).willReturn(classroom);
+    public void whenPostTeacherThenCreateTeacher() throws Exception {
+        Teacher teacher = new Teacher (1, "Andrew", "Robertson", 38);
+        given(service.createTeacher(Mockito.any())).willReturn(teacher);
 
-        mvc.perform(post("/classrooms").contentType(MediaType.TEXT_HTML_VALUE)).andExpect(status().isFound())
-                .andExpect(redirectedUrl("/classrooms"));
-        verify(service, VerificationModeFactory.times(1)).createClassroom(Mockito.any());
+        mvc.perform(post("/teachers").contentType(MediaType.TEXT_HTML_VALUE)).andExpect(status().isFound())
+                .andExpect(redirectedUrl("/teachers"));
+        verify(service, VerificationModeFactory.times(1)).createTeacher(Mockito.any());
         reset(service);
     }
 }

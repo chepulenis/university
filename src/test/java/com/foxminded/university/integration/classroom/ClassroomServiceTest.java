@@ -1,4 +1,4 @@
-package com.foxminded.university.integration;
+package com.foxminded.university.integration.classroom;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -10,7 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.mockito.internal.verification.VerificationModeFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -18,6 +17,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.foxminded.university.domain.Classroom;
+import com.foxminded.university.integration.Util;
 import com.foxminded.university.repository.ClassroomRepository;
 import com.foxminded.university.service.ClassroomService;
 
@@ -56,14 +56,14 @@ public class ClassroomServiceTest {
     public void whenInvalidIdthenClassroomShouldNotBeFound() {
         Classroom classroom = service.findClassroomById(0);
         assertThat(classroom).isNull();
-        verifyFindByIdIsCalledOnce();
+        Util.verifyFindByIdIsCalledOnce(repository);
     }
 
     @Test
     public void whenValidIdthenClassroomShouldBeFound() {
         Classroom classroom = service.findClassroomById(1);
         assertThat(classroom.getId()).isEqualByComparingTo(1);
-        verifyFindByIdIsCalledOnce();
+        Util.verifyFindByIdIsCalledOnce(repository);
     }
     
     @Test
@@ -72,19 +72,10 @@ public class ClassroomServiceTest {
         Classroom classroom2 = new Classroom(2, "Class of Engineering", 40);
         Classroom classroom3 = new Classroom(3, "Class of Phyics", 26);
         List<Classroom> classrooms = service.findAllClassrooms();
-        verifyFindAllClassroomsIsCalledOnce();
+        Util.verifyFindAllIsCalledOnce(repository);
         assertThat(classrooms).hasSize(3).extracting(Classroom::getId).contains(classroom1.getId(), classroom2.getId(), classroom3.getId());
         assertThat(classrooms).hasSize(3).extracting(Classroom::getName).contains(classroom1.getName(), classroom2.getName(), classroom3.getName());
         
     }
     
-    private void verifyFindByIdIsCalledOnce() {
-        Mockito.verify(repository, VerificationModeFactory.times(1)).findById(Mockito.anyInt());
-        Mockito.reset(repository);
-    }
-    
-    private void verifyFindAllClassroomsIsCalledOnce() {
-        Mockito.verify(repository, VerificationModeFactory.times(1)).findAll();
-        Mockito.reset(repository);
-    }
 }
